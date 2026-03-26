@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact — Lumière Immobilier</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%2316140f'/><text x='50%25' y='54%25' dominant-baseline='central' text-anchor='middle' font-family='Georgia,serif' font-weight='700' font-size='20' fill='%23c4933a'>L</text></svg>">
+<link rel="stylesheet" href="style.css">
+<style>
+  .contact-split { display:grid; grid-template-columns:1fr 1fr; min-height:calc(100vh - 80px); }
+
+  .contact-left {
+    background:var(--dark2);
+    padding:140px 64px 80px;
+    position:relative; overflow:hidden;
+    display:flex; flex-direction:column; justify-content:space-between;
+  }
+  .contact-left-bg {
+    position:absolute;inset:0;
+    background:repeating-linear-gradient(45deg,transparent,transparent 60px,rgba(196,147,58,0.025) 60px,rgba(196,147,58,0.025) 61px);
+  }
+  .contact-left-content { position:relative;z-index:1; }
+  .contact-left h1 { font-family:'Cormorant Garamond',serif;font-size:clamp(36px,4.5vw,60px);font-weight:300;color:var(--cream);line-height:1.08;margin-bottom:20px; }
+  .contact-left h1 em { color:var(--gold);font-style:italic; }
+  .contact-left-sub { font-size:15px;color:rgba(248,245,239,0.45);line-height:1.85;max-width:380px; }
+
+  .contact-infos { position:relative;z-index:1;display:flex;flex-direction:column;gap:28px;margin-top:60px; }
+  .ci-item { display:flex;gap:16px;align-items:flex-start; }
+  .ci-icon { width:40px;height:40px;border:1px solid rgba(196,147,58,0.2);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0; }
+  .ci-label { font-size:9px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:5px; }
+  .ci-value { font-size:14px;color:rgba(248,245,239,0.7); }
+  .ci-value a { color:inherit;text-decoration:none;transition:color 0.2s; }
+  .ci-value a:hover { color:var(--gold-light); }
+
+  .contact-hours {
+    position:relative;z-index:1;
+    margin-top:48px;
+    border-top:1px solid rgba(196,147,58,0.1);
+    padding-top:32px;
+  }
+  .hours-label { font-size:10px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:16px; }
+  .hours-grid { display:grid;grid-template-columns:1fr 1fr;gap:8px 32px; }
+  .hours-row { display:flex;justify-content:space-between;font-size:13px;color:rgba(248,245,239,0.5);padding:6px 0;border-bottom:1px solid rgba(196,147,58,0.06); }
+  .hours-day { color:rgba(248,245,239,0.7); }
+
+  /* FORM */
+  .contact-right { padding:140px 64px 80px;background:var(--cream); }
+  .form-section-title { font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:300;color:var(--dark);margin-bottom:36px;line-height:1.2; }
+
+  .cform { display:flex;flex-direction:column;gap:16px; }
+  .form-row { display:grid;grid-template-columns:1fr 1fr;gap:16px; }
+  .fg { display:flex;flex-direction:column;gap:7px; }
+  .fg label { font-size:10px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:var(--warm); }
+  .fg input, .fg select, .fg textarea {
+    background:var(--cream2);border:1px solid var(--border);border-radius:2px;
+    padding:13px 16px;font-family:'Jost',sans-serif;
+    font-size:14px;font-weight:300;color:var(--text);
+    outline:none;transition:border-color 0.2s;-webkit-appearance:none;
+  }
+  .fg input:focus,.fg select:focus,.fg textarea:focus { border-color:var(--gold); }
+  .fg input::placeholder,.fg textarea::placeholder { color:var(--text-light);opacity:0.5; }
+  .fg textarea { height:110px;resize:none; }
+  .fg select { cursor:pointer; }
+
+  .form-note { font-size:12px;color:var(--text-light);margin-top:4px; }
+
+  .submit-btn {
+    background:var(--dark);color:var(--gold-light);
+    border:none;padding:16px 36px;
+    font-family:'Jost',sans-serif;font-size:11px;font-weight:500;
+    letter-spacing:0.18em;text-transform:uppercase;
+    cursor:pointer;border-radius:2px;
+    transition:all 0.2s;align-self:flex-start;
+  }
+  .submit-btn:hover { background:var(--dark2);transform:translateY(-2px); }
+
+  .form-success-msg {
+    display:none;
+    background:var(--cream2);border:1px solid var(--border);border-left:3px solid var(--gold);
+    border-radius:2px;padding:24px;
+    font-size:15px;color:var(--dark);line-height:1.7;
+  }
+
+  /* ESTIMATION RAPIDE */
+  .estimation-rapide {
+    background:var(--cream2);
+    border:1px solid var(--border);
+    border-radius:3px;padding:32px;
+    margin-top:48px;
+  }
+  .er-title { font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:600;color:var(--dark);margin-bottom:6px; }
+  .er-sub { font-size:13px;color:var(--text-light);margin-bottom:20px; }
+  .er-items { display:flex;flex-direction:column;gap:10px; }
+  .er-item { display:flex;gap:10px;align-items:center;font-size:13px;color:var(--text-light); }
+
+  /* MAP placeholder */
+  .map-section { background:var(--dark);padding:0; }
+  .map-placeholder {
+    height:300px;
+    background:
+      repeating-linear-gradient(0deg,transparent,transparent 40px,rgba(196,147,58,0.04) 40px,rgba(196,147,58,0.04) 41px),
+      repeating-linear-gradient(90deg,transparent,transparent 40px,rgba(196,147,58,0.04) 40px,rgba(196,147,58,0.04) 41px),
+      var(--dark2);
+    display:flex;align-items:center;justify-content:center;position:relative;
+  }
+  .map-pin {
+    background:var(--cream);border:2px solid var(--gold);border-radius:4px;
+    padding:16px 24px;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,0.4);
+  }
+  .map-pin-name { font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:600;color:var(--dark);margin-bottom:3px; }
+  .map-pin-addr { font-size:12px;color:var(--text-light); }
+  .map-pin::after { content:'📍';font-size:24px;display:block;margin-top:8px; }
+
+  @media (max-width:900px) {
+    .contact-split { grid-template-columns:1fr; }
+    .contact-left,.contact-right { padding:100px 28px 60px; }
+    .form-row { grid-template-columns:1fr; }
+    .hours-grid { grid-template-columns:1fr; }
+  }
+</style>
+</head>
+<body>
+<div id="nav-placeholder"></div>
+
+<div class="contact-split">
+  <!-- LEFT -->
+  <div class="contact-left">
+    <div class="contact-left-bg"></div>
+    <div class="contact-left-content">
+      <div class="eyebrow fade" style="color:var(--gold);">Parlons de votre projet</div>
+      <h1 class="fade">Contactez <em>notre équipe</em></h1>
+      <p class="contact-left-sub fade">Que vous souhaitiez acheter, vendre, louer ou simplement obtenir une estimation, notre équipe est à votre écoute.</p>
+
+      <div class="contact-infos fade">
+        <div class="ci-item">
+          <div class="ci-icon">📞</div>
+          <div><div class="ci-label">Téléphone</div><div class="ci-value"><a href="tel:0142000000">01 42 00 00 00</a></div></div>
+        </div>
+        <div class="ci-item">
+          <div class="ci-icon">✉️</div>
+          <div><div class="ci-label">Email</div><div class="ci-value"><a href="mailto:contact@lumiere-immo.fr">contact@lumiere-immo.fr</a></div></div>
+        </div>
+        <div class="ci-item">
+          <div class="ci-icon">📍</div>
+          <div><div class="ci-label">Adresse</div><div class="ci-value">42 Avenue des Champs-Élysées<br>75008 Paris — Métro George V</div></div>
+        </div>
+      </div>
+
+      <div class="contact-hours fade">
+        <div class="hours-label">Horaires d'ouverture</div>
+        <div class="hours-grid">
+          <div class="hours-row"><span class="hours-day">Lundi</span><span>9h – 19h</span></div>
+          <div class="hours-row"><span class="hours-day">Mardi</span><span>9h – 19h</span></div>
+          <div class="hours-row"><span class="hours-day">Mercredi</span><span>9h – 19h</span></div>
+          <div class="hours-row"><span class="hours-day">Jeudi</span><span>9h – 19h</span></div>
+          <div class="hours-row"><span class="hours-day">Vendredi</span><span>9h – 19h</span></div>
+          <div class="hours-row"><span class="hours-day">Samedi</span><span>10h – 17h</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RIGHT -->
+  <div class="contact-right">
+    <div class="eyebrow fade">Formulaire de contact</div>
+    <div class="form-section-title fade">Envoyez-nous <em style="font-style:italic;color:var(--gold)">votre demande</em></div>
+
+    <form class="cform fade" id="contactForm">
+      <div class="form-row">
+        <div class="fg">
+          <label>Prénom *</label>
+          <input type="text" name="prenom" placeholder="Jean" required>
+        </div>
+        <div class="fg">
+          <label>Nom *</label>
+          <input type="text" name="nom" placeholder="Dupont" required>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="fg">
+          <label>Email *</label>
+          <input type="email" name="email" placeholder="jean@exemple.fr" required>
+        </div>
+        <div class="fg">
+          <label>Téléphone</label>
+          <input type="tel" name="telephone" placeholder="06 00 00 00 00">
+        </div>
+      </div>
+      <div class="fg">
+        <label>Votre demande *</label>
+        <select name="demande" required>
+          <option value="" disabled selected>Choisissez…</option>
+          <option>Je souhaite acheter un bien</option>
+          <option>Je souhaite louer un bien</option>
+          <option>Je souhaite vendre mon bien</option>
+          <option>Je souhaite une estimation gratuite</option>
+          <option>Je souhaite investir</option>
+          <option>Autre demande</option>
+        </select>
+      </div>
+      <div class="fg">
+        <label>Budget / Loyer envisagé</label>
+        <select name="budget">
+          <option value="" disabled selected>Votre budget…</option>
+          <option>Moins de 300 000 €</option>
+          <option>300 000 € – 600 000 €</option>
+          <option>600 000 € – 1 000 000 €</option>
+          <option>1 000 000 € – 2 000 000 €</option>
+          <option>Plus de 2 000 000 €</option>
+          <option>Location – moins de 2 000 €/mois</option>
+          <option>Location – 2 000 à 4 000 €/mois</option>
+          <option>Location – plus de 4 000 €/mois</option>
+        </select>
+      </div>
+      <div class="fg">
+        <label>Votre message *</label>
+        <textarea name="message" placeholder="Décrivez votre projet, vos critères, vos questions…" required></textarea>
+      </div>
+      <div class="fg">
+        <label>Disponibilités</label>
+        <input type="text" name="disponibilites" placeholder="Ex : Mardi ou jeudi matin, semaine prochaine">
+      </div>
+      <div>
+        <button type="button" class="submit-btn" onclick="submitForm()">Envoyer ma demande →</button>
+        <div class="form-note">Réponse garantie sous 24h — du lundi au vendredi</div>
+      </div>
+    </form>
+
+    <div class="form-success-msg" id="successMsg">
+      ✅ <strong>Votre demande a bien été envoyée !</strong><br>
+      Un conseiller Lumière Immobilier vous contactera dans les 24h. À très bientôt !
+    </div>
+
+    <div class="estimation-rapide fade">
+      <div class="er-title">Estimation gratuite</div>
+      <div class="er-sub">Vous vendez ? Obtenez une évaluation précise sous 48h.</div>
+      <div class="er-items">
+        <div class="er-item">✅ Réalisée par un expert local</div>
+        <div class="er-item">✅ Basée sur les transactions récentes</div>
+        <div class="er-item">✅ Sans engagement et 100% gratuite</div>
+        <div class="er-item">✅ Rendu sous 48h</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MAP -->
+<div class="map-section">
+  <div class="map-placeholder">
+    <div class="map-pin">
+      <div class="map-pin-name">Lumière Immobilier</div>
+      <div class="map-pin-addr">42 Av. des Champs-Élysées, Paris 8e</div>
+    </div>
+  </div>
+</div>
+
+<div id="footer-placeholder"></div>
+<div id="chat-placeholder"></div>
+<script src="shared.js"></script>
+<script src="chat.js"></script>
+<script>
+  function submitForm() {
+    const form = document.getElementById('contactForm');
+    const success = document.getElementById('successMsg');
+    form.style.display = 'none';
+    success.style.display = 'block';
+    success.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+</script>
+</body>
+</html>

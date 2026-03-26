@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>L'Agence — Lumière Immobilier</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%2316140f'/><text x='50%25' y='54%25' dominant-baseline='central' text-anchor='middle' font-family='Georgia,serif' font-weight='700' font-size='20' fill='%23c4933a'>L</text></svg>">
+<link rel="stylesheet" href="style.css">
+<style>
+  .page-hero {
+    background: var(--dark2); padding: 160px 64px 80px; position:relative; overflow:hidden;
+  }
+  .page-hero-bg { position:absolute;inset:0;background:repeating-linear-gradient(45deg,transparent,transparent 60px,rgba(196,147,58,0.025) 60px,rgba(196,147,58,0.025) 61px); }
+  .page-hero-content { position:relative;z-index:1; }
+  .page-hero h1 { font-family:'Cormorant Garamond',serif;font-size:clamp(40px,5vw,68px);font-weight:300;color:var(--cream);margin-bottom:16px;line-height:1.08; }
+  .page-hero h1 em { color:var(--gold);font-style:italic; }
+  .page-hero-sub { font-size:15px;color:rgba(248,245,239,0.5);max-width:480px;line-height:1.8; }
+
+  /* VALEURS */
+  .valeurs-grid { display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--border);border:1px solid var(--border); }
+  .valeur-item { background:var(--cream);padding:52px 44px;transition:background 0.2s; }
+  .valeur-item:hover { background:var(--cream2); }
+  .valeur-num { font-family:'Cormorant Garamond',serif;font-size:56px;font-weight:300;color:var(--gold);opacity:0.15;line-height:1;margin-bottom:-20px; }
+  .valeur-icon { font-size:30px;margin-bottom:18px; }
+  .valeur-title { font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:600;color:var(--dark);margin-bottom:10px; }
+  .valeur-desc { font-size:14px;color:var(--text-light);line-height:1.75; }
+
+  /* HISTOIRE */
+  .histoire-section { display:grid;grid-template-columns:1fr 1fr;gap:0; }
+  .histoire-left { padding:100px 64px;background:var(--cream2);border-right:1px solid var(--border); }
+  .histoire-right { padding:100px 64px; }
+  .timeline { display:flex;flex-direction:column;gap:0;margin-top:40px; }
+  .timeline-item { display:flex;gap:24px;padding-bottom:40px;position:relative; }
+  .timeline-item::before { content:'';position:absolute;left:15px;top:28px;bottom:0;width:1px;background:var(--border); }
+  .timeline-item:last-child::before { display:none; }
+  .timeline-dot { width:32px;height:32px;border-radius:50%;background:var(--dark);border:2px solid var(--gold);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:10px;color:var(--gold);font-weight:600; }
+  .timeline-content {}
+  .timeline-year { font-size:11px;font-weight:600;letter-spacing:0.14em;color:var(--gold);text-transform:uppercase;margin-bottom:4px; }
+  .timeline-text { font-size:14px;color:var(--text-light);line-height:1.7; }
+
+  /* EQUIPE */
+  .equipe-grid { display:grid;grid-template-columns:repeat(4,1fr);gap:24px; }
+  .membre-card { text-align:center; }
+  .membre-avatar {
+    width:100%;aspect-ratio:1;border-radius:3px;margin-bottom:18px;
+    display:flex;align-items:center;justify-content:center;
+    font-size:40px;
+  }
+  .av1 { background:linear-gradient(135deg,#d6caaf,#8c7860); }
+  .av2 { background:linear-gradient(135deg,#c0cfd6,#4d7280); }
+  .av3 { background:linear-gradient(135deg,#d4cbb8,#7a6c58); }
+  .av4 { background:linear-gradient(135deg,#c8d4c0,#5c7055); }
+  .membre-name { font-family:'Cormorant Garamond',serif;font-size:19px;font-weight:600;color:var(--dark);margin-bottom:4px; }
+  .membre-role { font-size:11px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);margin-bottom:8px; }
+  .membre-bio { font-size:13px;color:var(--text-light);line-height:1.65; }
+
+  /* CHIFFRES */
+  .chiffres-section { background:var(--dark); }
+  .chiffres-section .eyebrow { color:var(--gold); }
+  .chiffres-section .eyebrow::before { background:var(--gold); }
+  .chiffres-section .section-title { color:var(--cream); }
+  .chiffres-grid { display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:rgba(196,147,58,0.08);border:1px solid rgba(196,147,58,0.08); }
+  .chiffre-item { background:var(--dark);padding:48px 36px;text-align:center; }
+  .chiffre-num { font-family:'Cormorant Garamond',serif;font-size:52px;font-weight:300;color:var(--gold);line-height:1;margin-bottom:8px; }
+  .chiffre-label { font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:rgba(248,245,239,0.35); }
+
+  /* PARTENAIRES */
+  .partenaires { display:flex;align-items:center;gap:48px;flex-wrap:wrap;justify-content:center;padding:60px 64px;border-top:1px solid var(--border); }
+  .partenaire-label { font-size:10px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--warm); }
+  .partenaire-item { font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:600;color:var(--text-light);letter-spacing:0.05em; }
+
+  @media (max-width:900px) {
+    .page-hero { padding:130px 28px 60px; }
+    .valeurs-grid { grid-template-columns:1fr; }
+    .histoire-section { grid-template-columns:1fr; }
+    .histoire-left,.histoire-right { padding:60px 28px; }
+    .equipe-grid { grid-template-columns:1fr 1fr; }
+    .chiffres-grid { grid-template-columns:1fr 1fr; }
+    .partenaires { padding:48px 28px;gap:32px; }
+  }
+  @media (max-width:600px) {
+    .equipe-grid { grid-template-columns:1fr; }
+    .chiffres-grid { grid-template-columns:1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+<div id="nav-placeholder"></div>
+
+<div class="page-hero">
+  <div class="page-hero-bg"></div>
+  <div class="page-hero-content">
+    <div class="eyebrow" style="color:var(--gold);margin-bottom:16px;">Notre histoire</div>
+    <h1>L'agence <em>Lumière</em></h1>
+    <p class="page-hero-sub">Depuis 2008, nous accompagnons nos clients avec passion, expertise et une exigence absolue de la qualité.</p>
+  </div>
+</div>
+
+<!-- VALEURS -->
+<section class="section">
+  <div class="eyebrow fade">Ce qui nous définit</div>
+  <h2 class="section-title fade">Nos <em>valeurs</em></h2>
+  <p class="section-sub fade">Chaque décision que nous prenons est guidée par trois principes fondamentaux.</p>
+  <div class="valeurs-grid">
+    <div class="valeur-item fade fade-d1">
+      <div class="valeur-num">01</div>
+      <div class="valeur-icon">🎯</div>
+      <div class="valeur-title">Excellence</div>
+      <div class="valeur-desc">Nous ne sélectionnons que les biens qui correspondent à des critères stricts de qualité. Chaque annonce est vérifiée et visitée par notre équipe avant publication.</div>
+    </div>
+    <div class="valeur-item fade fade-d2">
+      <div class="valeur-num">02</div>
+      <div class="valeur-icon">🤝</div>
+      <div class="valeur-title">Confiance</div>
+      <div class="valeur-desc">Notre réputation repose sur la transparence totale — pas de frais cachés, pas de surprise. Chaque client est traité comme nous voudrions l'être.</div>
+    </div>
+    <div class="valeur-item fade fade-d3">
+      <div class="valeur-num">03</div>
+      <div class="valeur-icon">💡</div>
+      <div class="valeur-title">Innovation</div>
+      <div class="valeur-desc">Nous adoptons les meilleures technologies — visite virtuelle, assistant IA, signature électronique — pour vous faire gagner du temps et de la sérénité.</div>
+    </div>
+  </div>
+</section>
+
+<!-- HISTOIRE -->
+<div class="histoire-section">
+  <div class="histoire-left">
+    <div class="eyebrow fade">Notre parcours</div>
+    <h2 class="section-title fade" style="margin-bottom:0;">15 ans <em>d'histoire</em></h2>
+    <div class="timeline fade">
+      <div class="timeline-item">
+        <div class="timeline-dot">✦</div>
+        <div class="timeline-content">
+          <div class="timeline-year">2008 — Fondation</div>
+          <div class="timeline-text">Création de Lumière Immobilier par Élise Fontaine, avec une vision claire : démocratiser l'accès à l'immobilier premium parisien.</div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot">✦</div>
+        <div class="timeline-content">
+          <div class="timeline-year">2012 — Expansion IDF</div>
+          <div class="timeline-text">Ouverture de notre périmètre à toute l'Île-de-France, notamment Neuilly, Boulogne et Saint-Cloud.</div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot">✦</div>
+        <div class="timeline-content">
+          <div class="timeline-year">2018 — Certification</div>
+          <div class="timeline-text">Obtention de la certification ISO 9001 et du label "Agence Qualité Plus" pour notre service client.</div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot">✦</div>
+        <div class="timeline-content">
+          <div class="timeline-year">2024 — Transformation digitale</div>
+          <div class="timeline-text">Lancement de notre assistant IA et de nos outils digitaux pour offrir un service 24h/24.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="histoire-right">
+    <div class="eyebrow fade">Notre mission</div>
+    <h2 class="section-title fade">Pourquoi nous <em>choisir</em> ?</h2>
+    <p style="font-size:15px;color:var(--text-light);line-height:1.85;margin-bottom:32px;" class="fade">Nous croyons que trouver le bien idéal ne devrait pas être stressant. C'est pourquoi nous avons construit un processus fluide, transparent et humain — où vous êtes toujours informé et accompagné.</p>
+    <div style="display:flex;flex-direction:column;gap:20px;" class="fade">
+      <div style="display:flex;gap:16px;align-items:flex-start;">
+        <span style="font-size:20px;flex-shrink:0;">✅</span>
+        <div><strong style="font-size:14px;color:var(--dark);">Réseau exclusif de biens off-market</strong><p style="font-size:13px;color:var(--text-light);line-height:1.65;margin-top:3px;">Accédez à des biens non publiés sur les plateformes grand public.</p></div>
+      </div>
+      <div style="display:flex;gap:16px;align-items:flex-start;">
+        <span style="font-size:20px;flex-shrink:0;">✅</span>
+        <div><strong style="font-size:14px;color:var(--dark);">Un interlocuteur dédié du début à la fin</strong><p style="font-size:13px;color:var(--text-light);line-height:1.65;margin-top:3px;">Votre conseiller unique vous accompagne de la première visite à la signature.</p></div>
+      </div>
+      <div style="display:flex;gap:16px;align-items:flex-start;">
+        <span style="font-size:20px;flex-shrink:0;">✅</span>
+        <div><strong style="font-size:14px;color:var(--dark);">Estimation gratuite sous 48h</strong><p style="font-size:13px;color:var(--text-light);line-height:1.65;margin-top:3px;">Nos experts se déplacent pour évaluer précisément la valeur de votre bien.</p></div>
+      </div>
+      <div style="display:flex;gap:16px;align-items:flex-start;">
+        <span style="font-size:20px;flex-shrink:0;">✅</span>
+        <div><strong style="font-size:14px;color:var(--dark);">Disponibilité le soir et le week-end</strong><p style="font-size:13px;color:var(--text-light);line-height:1.65;margin-top:3px;">Nous nous adaptons à votre emploi du temps, pas l'inverse.</p></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- EQUIPE -->
+<section class="section" style="background:var(--cream2);">
+  <div class="eyebrow fade">Les visages de Lumière</div>
+  <h2 class="section-title fade">Notre <em>équipe</em></h2>
+  <p class="section-sub fade">8 experts passionnés à votre service, avec une expérience moyenne de 12 ans dans l'immobilier parisien.</p>
+  <div class="equipe-grid">
+    <div class="membre-card fade fade-d1">
+      <div class="membre-avatar av1">👩‍💼</div>
+      <div class="membre-name">Élise Fontaine</div>
+      <div class="membre-role">Fondatrice & Directrice</div>
+      <div class="membre-bio">15 ans d'expérience. Ancienne notaire reconvertie dans l'immobilier de prestige. Spécialiste Paris Ouest.</div>
+    </div>
+    <div class="membre-card fade fade-d2">
+      <div class="membre-avatar av2">👨‍💼</div>
+      <div class="membre-name">Thomas Berard</div>
+      <div class="membre-role">Directeur des Ventes</div>
+      <div class="membre-bio">Expert en transaction. Spécialiste des appartements Haussmanniens et des biens atypiques parisiens.</div>
+    </div>
+    <div class="membre-card fade fade-d3">
+      <div class="membre-avatar av3">👩‍💼</div>
+      <div class="membre-name">Camille Rousseau</div>
+      <div class="membre-role">Responsable Location</div>
+      <div class="membre-bio">Spécialiste de la gestion locative et de l'investissement. Connaissance approfondie de l'IDF.</div>
+    </div>
+    <div class="membre-card fade fade-d4">
+      <div class="membre-avatar av4">👨‍💼</div>
+      <div class="membre-name">Marc Leblanc</div>
+      <div class="membre-role">Expert Investissement</div>
+      <div class="membre-bio">Ancien analyste financier. Accompagne les investisseurs dans l'optimisation de leur patrimoine immobilier.</div>
+    </div>
+  </div>
+</section>
+
+<!-- CHIFFRES -->
+<section class="section chiffres-section">
+  <div class="eyebrow fade">En chiffres</div>
+  <h2 class="section-title fade" style="color:var(--cream);">15 ans de <em>résultats</em></h2>
+  <p class="section-sub fade" style="color:rgba(248,245,239,0.4);margin-bottom:48px;">Des chiffres qui témoignent de notre engagement quotidien.</p>
+  <div class="chiffres-grid">
+    <div class="chiffre-item fade fade-d1"><div class="chiffre-num">340+</div><div class="chiffre-label">Biens vendus</div></div>
+    <div class="chiffre-item fade fade-d2"><div class="chiffre-num">98%</div><div class="chiffre-label">Clients satisfaits</div></div>
+    <div class="chiffre-item fade fade-d3"><div class="chiffre-num">18j</div><div class="chiffre-label">Délai moyen de vente</div></div>
+    <div class="chiffre-item fade fade-d4"><div class="chiffre-num">€2Md+</div><div class="chiffre-label">De transactions réalisées</div></div>
+  </div>
+</section>
+
+<!-- PARTENAIRES -->
+<div class="partenaires fade">
+  <span class="partenaire-label">Nos partenaires :</span>
+  <span class="partenaire-item">Crédit Agricole</span>
+  <span class="partenaire-item">Notaires de Paris</span>
+  <span class="partenaire-item">BNP Paribas</span>
+  <span class="partenaire-item">FNAIM</span>
+  <span class="partenaire-item">Century 21</span>
+</div>
+
+<div id="footer-placeholder"></div>
+<div id="chat-placeholder"></div>
+<script src="shared.js"></script>
+<script src="chat.js"></script>
+</body>
+</html>
