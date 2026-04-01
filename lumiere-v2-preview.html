@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lumière Immobilier — Agence Premium Paris & IDF</title>
+<meta name="description" content="Agence immobilière premium à Paris et en Île-de-France. Achat, vente, location et estimation de biens d'exception depuis 2008.">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%230e0d0a'/><text x='50%25' y='54%25' dominant-baseline='central' text-anchor='middle' font-family='Georgia,serif' font-weight='700' font-size='20' fill='%23b8922a'>L</text></svg>">
+<link rel="stylesheet" href="style.css">
+<style>
+/* ── HERO ── */
+.hero{min-height:100vh;display:grid;grid-template-columns:55% 45%;position:relative;}
+.hero-left{display:flex;flex-direction:column;justify-content:center;padding:140px 72px 80px 72px;position:relative;z-index:2;background:var(--cream);}
+.hero-left::after{content:'';position:absolute;top:0;right:0;bottom:0;width:1px;background:linear-gradient(to bottom,transparent,var(--border),transparent);}
+
+.hero-kicker{font-size:10px;font-weight:500;letter-spacing:0.32em;text-transform:uppercase;color:var(--gold);margin-bottom:32px;display:flex;align-items:center;gap:16px;opacity:0;animation:fadeUp 0.8s 0.2s ease forwards;}
+.hero-kicker::before{content:'';width:32px;height:1px;background:var(--gold);flex-shrink:0;}
+
+h1{font-family:'Playfair Display',serif;font-size:clamp(48px,5.5vw,80px);font-weight:400;line-height:1.04;letter-spacing:-0.02em;color:var(--dark);margin-bottom:28px;opacity:0;animation:fadeUp 0.9s 0.35s ease forwards;}
+h1 em{font-style:italic;color:var(--gold);}
+
+.hero-sub{font-size:16px;color:var(--text2);line-height:1.85;max-width:400px;margin-bottom:52px;font-weight:300;opacity:0;animation:fadeUp 0.9s 0.5s ease forwards;}
+.hero-actions{display:flex;align-items:center;gap:20px;flex-wrap:wrap;opacity:0;animation:fadeUp 0.9s 0.65s ease forwards;}
+
+.hero-stats{display:flex;gap:40px;flex-wrap:wrap;margin-top:64px;padding-top:40px;border-top:1px solid var(--border);opacity:0;animation:fadeUp 0.9s 0.8s ease forwards;}
+.hstat-num{font-family:'Playfair Display',serif;font-size:34px;font-weight:400;color:var(--dark);line-height:1;}
+.hstat-label{font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:var(--text3);margin-top:5px;}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);}}
+
+.hero-right{position:relative;overflow:hidden;}
+.hero-img{position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1400&q=85') center/cover no-repeat;animation:heroZoom 8s ease-out both;}
+@keyframes heroZoom{from{transform:scale(1.06);}to{transform:scale(1);}}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(14,13,10,0.1) 0%,rgba(14,13,10,0.45) 100%);}
+.hero-card{position:absolute;bottom:48px;left:48px;right:48px;background:rgba(250,247,242,0.97);backdrop-filter:blur(12px);border-left:3px solid var(--gold);padding:22px 26px;border-radius:2px;box-shadow:0 20px 60px rgba(14,13,10,0.35);opacity:0;animation:fadeUp 1s 1s ease forwards;}
+.hero-card-label{font-size:9px;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;color:var(--gold);margin-bottom:7px;}
+.hero-card-title{font-family:'Playfair Display',serif;font-size:17px;font-weight:500;color:var(--dark);margin-bottom:5px;}
+.hero-card-sub{font-size:12px;color:var(--text3);}
+.hero-scroll-hint{position:absolute;bottom:28px;right:28px;writing-mode:vertical-rl;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:rgba(250,247,242,0.5);display:flex;align-items:center;gap:10px;}
+.hero-scroll-hint::after{content:'';width:1px;height:40px;background:rgba(250,247,242,0.3);}
+
+/* ── MARQUEE ── */
+.marquee-section{background:var(--dark2);padding:20px 0;overflow:hidden;border-top:1px solid rgba(184,146,42,0.08);border-bottom:1px solid rgba(184,146,42,0.08);}
+.marquee-track{display:flex;gap:80px;animation:marquee 28s linear infinite;width:max-content;}
+.marquee-item{font-size:11px;font-weight:400;letter-spacing:0.22em;text-transform:uppercase;color:rgba(184,146,42,0.45);white-space:nowrap;display:flex;align-items:center;gap:20px;}
+.marquee-item::after{content:'✦';color:var(--gold);opacity:0.3;font-size:8px;}
+@keyframes marquee{0%{transform:translateX(0);}100%{transform:translateX(-50%)}}
+
+/* ── ABOUT STRIP ── */
+.about-strip{background:var(--dark);padding:64px 72px;display:flex;align-items:center;gap:80px;flex-wrap:wrap;}
+.about-strip-quote{font-family:'Playfair Display',serif;font-size:clamp(20px,2.5vw,30px);font-weight:300;font-style:italic;color:var(--cream);line-height:1.45;max-width:520px;flex:1;}
+.about-strip-quote strong{font-style:normal;color:var(--gold);}
+.about-strip-stats{display:flex;gap:48px;flex-wrap:wrap;}
+.astat{text-align:center;}
+.astat-num{font-family:'Playfair Display',serif;font-size:42px;font-weight:400;color:var(--gold3);line-height:1;}
+.astat-label{font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:rgba(250,247,242,0.35);margin-top:7px;}
+
+/* ── FEATURED BIENS ── */
+.biens-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+.bien-card{background:var(--white);border-radius:2px;overflow:hidden;cursor:pointer;border:1px solid var(--border);transition:transform 0.4s cubic-bezier(0.4,0,0.2,1),box-shadow 0.4s,border-color 0.3s;}
+.bien-card:hover{transform:translateY(-6px);box-shadow:var(--shadow);border-color:transparent;}
+.bien-img{height:240px;position:relative;overflow:hidden;}
+.bien-img-bg{width:100%;height:100%;background-size:cover;background-position:center;transition:transform 0.6s cubic-bezier(0.4,0,0.2,1);}
+.bien-card:hover .bien-img-bg{transform:scale(1.06);}
+.bien-img-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(14,13,10,0.5) 0%,transparent 55%);}
+.bien-badges{position:absolute;top:14px;left:14px;display:flex;gap:6px;}
+.tag{display:inline-block;font-size:9px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;padding:5px 12px;border-radius:1px;}
+.tag-dark{background:var(--dark);color:var(--gold3);}
+.tag-gold{background:var(--gold);color:var(--white);}
+.tag-outline{border:1px solid rgba(250,247,242,0.4);color:rgba(250,247,242,0.9);background:none;}
+.bien-body{padding:22px 24px 24px;}
+.bien-price{font-family:'Playfair Display',serif;font-size:21px;font-weight:400;color:var(--dark);margin-bottom:4px;}
+.bien-title{font-size:14px;font-weight:400;color:var(--text);margin-bottom:3px;}
+.bien-loc{font-size:12px;color:var(--text3);margin-bottom:14px;display:flex;align-items:center;gap:4px;}
+.bien-specs{display:flex;gap:14px;flex-wrap:wrap;padding-top:14px;border-top:1px solid var(--border);}
+.spec{font-size:11px;color:var(--text3);display:flex;align-items:center;gap:4px;}
+.bien-cta-row{display:flex;justify-content:space-between;align-items:center;margin-top:14px;padding-top:14px;border-top:1px solid var(--border);}
+.bien-cta-btn{background:var(--dark);color:var(--gold3);font-family:'Outfit',sans-serif;font-size:10px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;padding:9px 18px;border-radius:1px;border:none;cursor:pointer;transition:background 0.2s;}
+.bien-cta-btn:hover{background:var(--dark2);}
+.bien-ref{font-size:10px;color:var(--text3);letter-spacing:0.08em;}
+
+/* ── PROCESS ── */
+.process-section{background:var(--cream2);}
+.process-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:rgba(184,146,42,0.1);border:1px solid rgba(184,146,42,0.1);}
+.process-item{background:var(--cream2);padding:52px 40px;position:relative;overflow:hidden;transition:background 0.3s;}
+.process-item:hover{background:var(--cream3);}
+.process-num-bg{font-family:'Playfair Display',serif;font-size:96px;font-weight:400;color:var(--gold);opacity:0.07;position:absolute;top:12px;right:16px;line-height:1;}
+.process-icon{font-size:28px;margin-bottom:20px;}
+.process-title{font-family:'Playfair Display',serif;font-size:20px;font-weight:400;color:var(--dark);margin-bottom:10px;}
+.process-desc{font-size:13.5px;color:var(--text2);line-height:1.75;}
+
+/* ── TEMOIGNAGES ── */
+.temo-section{background:var(--dark2);}
+.temo-section .section-title{color:var(--cream);}
+.temo-section .section-sub{color:rgba(250,247,242,0.4);}
+.temo-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+.temo-card{border:1px solid rgba(184,146,42,0.1);border-radius:2px;padding:36px;position:relative;transition:border-color 0.3s;}
+.temo-card:hover{border-color:rgba(184,146,42,0.3);}
+.temo-quote-mark{font-family:'Playfair Display',serif;font-size:80px;font-weight:400;color:var(--gold);opacity:0.15;position:absolute;top:8px;left:28px;line-height:1;}
+.temo-stars{color:var(--gold);font-size:12px;margin-bottom:16px;letter-spacing:2px;}
+.temo-text{font-family:'Playfair Display',serif;font-size:16px;font-style:italic;font-weight:300;color:var(--cream);line-height:1.8;margin-bottom:24px;padding-top:20px;}
+.temo-author{font-size:12px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);}
+.temo-role{font-size:11px;color:rgba(250,247,242,0.3);margin-top:3px;}
+
+/* ── CTA BAND ── */
+.cta-band{background:var(--gold);padding:80px 72px;display:flex;align-items:center;justify-content:space-between;gap:40px;flex-wrap:wrap;}
+.cta-band-title{font-family:'Playfair Display',serif;font-size:clamp(26px,3vw,42px);font-weight:400;color:var(--dark);max-width:520px;line-height:1.2;}
+.cta-band-btn{background:var(--dark);color:var(--gold3);font-family:'Outfit',sans-serif;font-size:11px;font-weight:500;letter-spacing:0.16em;text-transform:uppercase;padding:18px 44px;border-radius:1px;text-decoration:none;transition:all 0.25s;white-space:nowrap;display:inline-block;}
+.cta-band-btn:hover{background:var(--dark2);transform:translateY(-2px);box-shadow:0 8px 32px rgba(14,13,10,0.2);}
+
+/* ── MODAL ── */
+#modal{display:none;position:fixed;inset:0;z-index:600;background:rgba(14,13,10,0.75);backdrop-filter:blur(8px);align-items:center;justify-content:center;padding:24px;}
+#modal.open{display:flex;}
+.modal-box{background:var(--cream);border-radius:4px;padding:52px;max-width:500px;width:100%;position:relative;box-shadow:0 48px 100px rgba(14,13,10,0.35);animation:fadeUp 0.3s ease;}
+.modal-close{position:absolute;top:20px;right:20px;background:none;border:none;font-size:22px;cursor:pointer;color:var(--text3);transition:color 0.2s;}
+.modal-close:hover{color:var(--dark);}
+.modal-eyebrow{font-size:9px;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;color:var(--gold);margin-bottom:12px;}
+.modal-title{font-family:'Playfair Display',serif;font-size:26px;font-weight:400;color:var(--dark);margin-bottom:28px;}
+.mform{display:flex;flex-direction:column;gap:14px;}
+.mfg{display:flex;flex-direction:column;gap:6px;}
+.mfg label{font-size:10px;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:var(--warm);}
+.mfg input,.mfg select{background:var(--cream2);border:1px solid var(--border);border-radius:1px;padding:12px 16px;font-family:'Outfit',sans-serif;font-size:14px;color:var(--text);outline:none;transition:border-color 0.2s;}
+.mfg input:focus,.mfg select:focus{border-color:var(--gold);}
+.modal-submit{background:var(--dark);color:var(--gold3);border:none;padding:14px 32px;font-family:'Outfit',sans-serif;font-size:11px;font-weight:500;letter-spacing:0.16em;text-transform:uppercase;cursor:pointer;border-radius:1px;transition:background 0.2s;margin-top:4px;align-self:flex-start;}
+.modal-submit:hover{background:var(--dark2);}
+
+/* ── RESPONSIVE ── */
+@media(max-width:900px){
+  .hero{grid-template-columns:1fr;}
+  .hero-right{height:50vh;}
+  .hero-left{padding:110px 28px 60px;}
+  .about-strip{padding:48px 28px;gap:40px;}
+  .biens-grid{grid-template-columns:1fr;}
+  .process-grid{grid-template-columns:1fr 1fr;}
+  .temo-grid{grid-template-columns:1fr;}
+  .cta-band{padding:60px 28px;}
+}
+@media(max-width:600px){
+  .process-grid{grid-template-columns:1fr;}
+  .about-strip-stats{gap:28px;}
+}
+</style>
+</head>
+<body>
+<div id="nav-placeholder"></div>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-left">
+    <div class="hero-kicker">Agence immobilière · Paris & Île-de-France</div>
+    <h1>L'immobilier<br><em>d'exception,</em><br>à votre portée.</h1>
+    <p class="hero-sub">Depuis 2008, Lumière Immobilier accompagne particuliers et investisseurs dans leurs projets immobiliers avec expertise, discrétion et résultats.</p>
+    <div class="hero-actions">
+      <a href="biens.html" class="btn btn-dark">Découvrir nos biens →</a>
+      <a href="contact.html" class="btn-ghost">Estimation gratuite ↗</a>
+    </div>
+    <div class="hero-stats">
+      <div><div class="hstat-num">340+</div><div class="hstat-label">Biens vendus</div></div>
+      <div><div class="hstat-num">15 ans</div><div class="hstat-label">D'expertise</div></div>
+      <div><div class="hstat-num">98%</div><div class="hstat-label">Clients satisfaits</div></div>
+      <div><div class="hstat-num">€2Md+</div><div class="hstat-label">De transactions</div></div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-img"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-card">
+      <div class="hero-card-label">✦ Bien du moment</div>
+      <div class="hero-card-title">Appartement Haussmannien — Paris 8e</div>
+      <div class="hero-card-sub">120 m² · 4 pièces · 3 chambres · 1 290 000 €</div>
+    </div>
+    <div class="hero-scroll-hint">Découvrir</div>
+  </div>
+</header>
+
+<!-- MARQUEE -->
+<div class="marquee-section">
+  <div class="marquee-track">
+    <div class="marquee-item">Achat & Vente</div>
+    <div class="marquee-item">Location Premium</div>
+    <div class="marquee-item">Estimation Gratuite</div>
+    <div class="marquee-item">Biens Off-Market</div>
+    <div class="marquee-item">Investissement Locatif</div>
+    <div class="marquee-item">Paris & Île-de-France</div>
+    <div class="marquee-item">Gestion Locative</div>
+    <div class="marquee-item">Expertise Haussmannien</div>
+    <div class="marquee-item">Achat & Vente</div>
+    <div class="marquee-item">Location Premium</div>
+    <div class="marquee-item">Estimation Gratuite</div>
+    <div class="marquee-item">Biens Off-Market</div>
+    <div class="marquee-item">Investissement Locatif</div>
+    <div class="marquee-item">Paris & Île-de-France</div>
+    <div class="marquee-item">Gestion Locative</div>
+    <div class="marquee-item">Expertise Haussmannien</div>
+  </div>
+</div>
+
+<!-- ABOUT STRIP -->
+<div class="about-strip fade">
+  <div class="about-strip-quote">"Trouver le bien idéal n'est pas une question de chance. C'est une question <strong>d'expertise, d'écoute et d'engagement.</strong>"</div>
+  <div class="about-strip-stats">
+    <div class="astat"><div class="astat-num">340+</div><div class="astat-label">Biens vendus</div></div>
+    <div class="astat"><div class="astat-num">15</div><div class="astat-label">Ans d'expérience</div></div>
+    <div class="astat"><div class="astat-num">8</div><div class="astat-label">Experts dédiés</div></div>
+  </div>
+</div>
+
+<!-- BIENS EN VEDETTE -->
+<section class="section">
+  <div class="eyebrow fade">Sélection du moment</div>
+  <h2 class="section-title fade">Nos biens <em>en vedette</em></h2>
+  <p class="section-sub fade">Une sélection rigoureuse de biens d'exception à Paris et en Île-de-France.</p>
+  <div class="biens-grid">
+    <div class="bien-card fade fade-d1">
+      <div class="bien-img">
+        <div class="bien-img-bg" style="background-image:url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&q=80')"></div>
+        <div class="bien-img-overlay"></div>
+        <div class="bien-badges"><span class="tag tag-dark">Vente</span><span class="tag tag-gold">Coup de cœur</span></div>
+      </div>
+      <div class="bien-body">
+        <div class="bien-price">1 290 000 €</div>
+        <div class="bien-title">Appartement Haussmannien 4 pièces</div>
+        <div class="bien-loc">📍 Paris 8e arrondissement</div>
+        <div class="bien-specs">
+          <span class="spec">🏠 120 m²</span>
+          <span class="spec">🛏 3 ch.</span>
+          <span class="spec">✨ Rénové 2023</span>
+          <span class="spec">🏢 3e ét. + asc.</span>
+        </div>
+        <div class="bien-cta-row">
+          <button class="bien-cta-btn" onclick="openModal('Appartement Haussmannien — Paris 8e')">Demander une visite</button>
+          <span class="bien-ref">Réf. LI-2401</span>
+        </div>
+      </div>
+    </div>
+    <div class="bien-card fade fade-d2">
+      <div class="bien-img">
+        <div class="bien-img-bg" style="background-image:url('https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&q=80')"></div>
+        <div class="bien-img-overlay"></div>
+        <div class="bien-badges"><span class="tag tag-dark">Location</span></div>
+      </div>
+      <div class="bien-body">
+        <div class="bien-price">3 200 € <span style="font-family:'Outfit';font-size:13px;font-weight:300;color:var(--text3)">/mois</span></div>
+        <div class="bien-title">Loft contemporain 3 pièces</div>
+        <div class="bien-loc">📍 Neuilly-sur-Seine</div>
+        <div class="bien-specs">
+          <span class="spec">🏠 85 m²</span>
+          <span class="spec">🛏 2 ch.</span>
+          <span class="spec">🌿 Terrasse 12m²</span>
+        </div>
+        <div class="bien-cta-row">
+          <button class="bien-cta-btn" onclick="openModal('Loft contemporain — Neuilly-sur-Seine')">Demander une visite</button>
+          <span class="bien-ref">Réf. LI-2402</span>
+        </div>
+      </div>
+    </div>
+    <div class="bien-card fade fade-d3">
+      <div class="bien-img">
+        <div class="bien-img-bg" style="background-image:url('https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=800&q=80')"></div>
+        <div class="bien-img-overlay"></div>
+        <div class="bien-badges"><span class="tag tag-dark">Vente</span><span class="tag tag-outline">Exclusivité</span></div>
+      </div>
+      <div class="bien-body">
+        <div class="bien-price">1 850 000 €</div>
+        <div class="bien-title">Maison avec jardin 6 pièces</div>
+        <div class="bien-loc">📍 Saint-Cloud</div>
+        <div class="bien-specs">
+          <span class="spec">🏠 180 m²</span>
+          <span class="spec">🛏 4 ch.</span>
+          <span class="spec">🌳 Jardin 300m²</span>
+        </div>
+        <div class="bien-cta-row">
+          <button class="bien-cta-btn" onclick="openModal('Maison avec jardin — Saint-Cloud')">Demander une visite</button>
+          <span class="bien-ref">Réf. LI-2405</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div style="text-align:center;margin-top:48px;" class="fade">
+    <a href="biens.html" class="btn btn-outline">Voir tous nos biens →</a>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="section process-section">
+  <div class="eyebrow fade">Notre méthode</div>
+  <h2 class="section-title fade">Un accompagnement <em>sur mesure</em></h2>
+  <p class="section-sub fade">De la première rencontre à la remise des clés, un suivi personnalisé à chaque étape.</p>
+  <div class="process-grid">
+    <div class="process-item fade fade-d1">
+      <div class="process-num-bg">1</div>
+      <div class="process-icon">🤝</div>
+      <div class="process-title">Écoute & Conseil</div>
+      <div class="process-desc">Un premier rendez-vous pour comprendre vos besoins, votre budget et vos critères. Sans engagement, sans pression.</div>
+    </div>
+    <div class="process-item fade fade-d2">
+      <div class="process-num-bg">2</div>
+      <div class="process-icon">🔍</div>
+      <div class="process-title">Recherche ciblée</div>
+      <div class="process-desc">Nous activons notre réseau exclusif pour identifier les biens correspondant à vos critères, y compris les biens off-market.</div>
+    </div>
+    <div class="process-item fade fade-d3">
+      <div class="process-num-bg">3</div>
+      <div class="process-icon">🏡</div>
+      <div class="process-title">Visites & Sélection</div>
+      <div class="process-desc">Nous organisons les visites, vous accompagnons et vous conseillons sur les aspects techniques et juridiques.</div>
+    </div>
+    <div class="process-item fade fade-d4">
+      <div class="process-num-bg">4</div>
+      <div class="process-icon">🔑</div>
+      <div class="process-title">Signature & Suivi</div>
+      <div class="process-desc">De l'offre d'achat à l'acte notarié, nous coordonnons tout et restons disponibles après la transaction.</div>
+    </div>
+  </div>
+</section>
+
+<!-- TEMOIGNAGES -->
+<section class="section temo-section">
+  <div class="eyebrow fade" style="color:var(--gold)">Ils nous font confiance</div>
+  <h2 class="section-title fade">Ce que disent <em>nos clients</em></h2>
+  <p class="section-sub fade" style="color:rgba(250,247,242,0.4);margin-bottom:48px;">Des centaines de familles ont réalisé leur projet immobilier avec Lumière.</p>
+  <div class="temo-grid">
+    <div class="temo-card fade fade-d1">
+      <div class="temo-quote-mark">"</div>
+      <div class="temo-stars">★★★★★</div>
+      <div class="temo-text">Une équipe d'une rare qualité. Ils ont trouvé notre appartement idéal en 18 jours, au prix que nous voulions. Professionnels et à l'écoute du début à la fin.</div>
+      <div class="temo-author">Sophie & Marc L.</div>
+      <div class="temo-role">Acheteurs · Paris 16e · 2024</div>
+    </div>
+    <div class="temo-card fade fade-d2">
+      <div class="temo-quote-mark">"</div>
+      <div class="temo-stars">★★★★★</div>
+      <div class="temo-text">Estimation parfaite, vente conclue en 12 jours au prix demandé. Je recommande sans hésitation. Lumière Immobilier, c'est la crème de la crème.</div>
+      <div class="temo-author">Pierre D.</div>
+      <div class="temo-role">Vendeur · Neuilly-sur-Seine · 2024</div>
+    </div>
+    <div class="temo-card fade fade-d3">
+      <div class="temo-quote-mark">"</div>
+      <div class="temo-stars">★★★★★</div>
+      <div class="temo-text">Pour mon investissement locatif, ils ont su identifier le bien avec le meilleur rendement. Un conseil vraiment stratégique et personnalisé.</div>
+      <div class="temo-author">Isabelle M.</div>
+      <div class="temo-role">Investisseuse · Boulogne · 2023</div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="cta-band fade">
+  <div class="cta-band-title">Prêt à concrétiser votre projet immobilier ?</div>
+  <a href="contact.html" class="cta-band-btn">Prendre rendez-vous →</a>
+</div>
+
+<!-- MODAL VISITE -->
+<div id="modal">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal()">×</button>
+    <div class="modal-eyebrow">Demande de visite</div>
+    <div class="modal-title" id="modal-bien-name">Organisons une visite</div>
+    <div class="mform">
+      <div class="mfg"><label>Prénom & Nom</label><input type="text" placeholder="Jean Dupont"></div>
+      <div class="mfg"><label>Téléphone</label><input type="tel" placeholder="06 00 00 00 00"></div>
+      <div class="mfg"><label>Email</label><input type="email" placeholder="jean@exemple.fr"></div>
+      <div class="mfg"><label>Disponibilités</label><input type="text" placeholder="Ex : Mardi ou jeudi matin"></div>
+      <button class="modal-submit" onclick="closeModal()">Confirmer ma demande →</button>
+    </div>
+  </div>
+</div>
+
+<div id="footer-placeholder"></div>
+<div id="chat-placeholder"></div>
+<script src="shared.js"></script>
+<script src="chat.js"></script>
+<script>
+  const modal = document.getElementById('modal');
+  function openModal(name) { document.getElementById('modal-bien-name').textContent = name || 'Organisons une visite'; modal.classList.add('open'); }
+  function closeModal() { modal.classList.remove('open'); }
+  modal.addEventListener('click', e => { if(e.target===modal) closeModal(); });
+  document.addEventListener('keydown', e => { if(e.key==='Escape') closeModal(); });
+</script>
+</body>
+</html>
