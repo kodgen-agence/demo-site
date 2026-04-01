@@ -165,6 +165,18 @@ function injectShell() {
   const n=document.getElementById('nav-placeholder'); if(n) n.outerHTML=NAV_HTML;
   const f=document.getElementById('footer-placeholder'); if(f) f.outerHTML=FOOTER_HTML;
   const c=document.getElementById('chat-placeholder'); if(c) c.outerHTML=CHATBOT_HTML;
+  
+  // Inject demo banner
+  const banner = document.createElement('div');
+  banner.id = 'demo-banner';
+  banner.innerHTML = `
+    <div class="demo-banner-text">
+      ✦ Ceci est un <strong>site de démonstration</strong> réalisé par Kodgen — le chatbot est alimenté par IA
+    </div>
+    <a href="https://kodgen.vercel.app" target="_blank" class="demo-banner-link">Voir nos offres →</a>
+  `;
+  document.body.prepend(banner);
+  document.body.classList.add('has-demo-banner');
 }
 
 document.addEventListener('DOMContentLoaded', () => {

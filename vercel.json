@@ -1,4 +1,12 @@
 {
   "cleanUrls": true,
-  "trailingSlash": false
+  "trailingSlash": false,
+  "functions": {
+    "api/chat.js": {
+      "maxDuration": 15
+    }
+  },
+  "routes": [
+    { "src": "/api/chat", "dest": "/api/chat.js" }
+  ]
 }
