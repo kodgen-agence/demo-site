@@ -1,98 +1,111 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>L'Agence — Lumière Immobilier</title>
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%2316140f'/><text x='50%25' y='54%25' dominant-baseline='central' text-anchor='middle' font-family='Georgia,serif' font-weight='700' font-size='20' fill='%23c4933a'>L</text></svg>">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%230e0d0a'/><text x='50%25' y='54%25' dominant-baseline='central' text-anchor='middle' font-family='Georgia,serif' font-weight='700' font-size='20' fill='%23b8922a'>L</text></svg>">
 <link rel="stylesheet" href="style.css">
 <style>
-  .page-hero {
-    background: var(--dark2); padding: 160px 64px 80px; position:relative; overflow:hidden;
-  }
-  .page-hero-bg { position:absolute;inset:0;background:repeating-linear-gradient(45deg,transparent,transparent 60px,rgba(196,147,58,0.025) 60px,rgba(196,147,58,0.025) 61px); }
-  .page-hero-content { position:relative;z-index:1; }
-  .page-hero h1 { font-family:'Cormorant Garamond',serif;font-size:clamp(40px,5vw,68px);font-weight:300;color:var(--cream);margin-bottom:16px;line-height:1.08; }
-  .page-hero h1 em { color:var(--gold);font-style:italic; }
-  .page-hero-sub { font-size:15px;color:rgba(248,245,239,0.5);max-width:480px;line-height:1.8; }
+.page-hero{min-height:60vh;display:grid;grid-template-columns:1fr 1fr;position:relative;}
+.page-hero-left{background:var(--dark2);padding:160px 72px 80px;display:flex;flex-direction:column;justify-content:flex-end;position:relative;overflow:hidden;}
+.page-hero-left::before{content:'';position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1486325212027-8081e485255e?w=1200&q=70') center/cover no-repeat;opacity:0.08;}
+.page-hero-left-content{position:relative;z-index:1;}
+.page-hero-left h1{font-family:'Playfair Display',serif;font-size:clamp(40px,5vw,68px);font-weight:400;color:var(--cream);line-height:1.08;margin-bottom:16px;}
+.page-hero-left h1 em{color:var(--gold);font-style:italic;}
+.page-hero-sub{font-size:15px;color:rgba(250,247,242,0.45);max-width:460px;line-height:1.8;}
+.page-hero-right{background:var(--gold);padding:80px 60px;display:flex;align-items:center;justify-content:center;}
+.hero-stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;}
+.hero-stat{text-align:center;}
+.hero-stat-num{font-family:'Playfair Display',serif;font-size:52px;font-weight:400;color:var(--dark);line-height:1;margin-bottom:8px;}
+.hero-stat-label{font-size:10px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:rgba(14,13,10,0.55);}
 
-  /* VALEURS */
-  .valeurs-grid { display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--border);border:1px solid var(--border); }
-  .valeur-item { background:var(--cream);padding:52px 44px;transition:background 0.2s; }
-  .valeur-item:hover { background:var(--cream2); }
-  .valeur-num { font-family:'Cormorant Garamond',serif;font-size:56px;font-weight:300;color:var(--gold);opacity:0.15;line-height:1;margin-bottom:-20px; }
-  .valeur-icon { font-size:30px;margin-bottom:18px; }
-  .valeur-title { font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:600;color:var(--dark);margin-bottom:10px; }
-  .valeur-desc { font-size:14px;color:var(--text-light);line-height:1.75; }
+/* VALEURS */
+.valeurs-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:rgba(184,146,42,0.1);border:1px solid rgba(184,146,42,0.1);}
+.valeur-item{background:var(--cream);padding:52px 44px;transition:background 0.3s;}
+.valeur-item:hover{background:var(--cream2);}
+.valeur-big-num{font-family:'Playfair Display',serif;font-size:72px;font-weight:400;color:var(--gold);opacity:0.1;line-height:1;margin-bottom:-20px;}
+.valeur-icon{font-size:30px;margin-bottom:18px;}
+.valeur-title{font-family:'Playfair Display',serif;font-size:22px;font-weight:400;color:var(--dark);margin-bottom:10px;}
+.valeur-desc{font-size:14px;color:var(--text2);line-height:1.75;}
 
-  /* HISTOIRE */
-  .histoire-section { display:grid;grid-template-columns:1fr 1fr;gap:0; }
-  .histoire-left { padding:100px 64px;background:var(--cream2);border-right:1px solid var(--border); }
-  .histoire-right { padding:100px 64px; }
-  .timeline { display:flex;flex-direction:column;gap:0;margin-top:40px; }
-  .timeline-item { display:flex;gap:24px;padding-bottom:40px;position:relative; }
-  .timeline-item::before { content:'';position:absolute;left:15px;top:28px;bottom:0;width:1px;background:var(--border); }
-  .timeline-item:last-child::before { display:none; }
-  .timeline-dot { width:32px;height:32px;border-radius:50%;background:var(--dark);border:2px solid var(--gold);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:10px;color:var(--gold);font-weight:600; }
-  .timeline-content {}
-  .timeline-year { font-size:11px;font-weight:600;letter-spacing:0.14em;color:var(--gold);text-transform:uppercase;margin-bottom:4px; }
-  .timeline-text { font-size:14px;color:var(--text-light);line-height:1.7; }
+/* HISTOIRE */
+.histoire-section{display:grid;grid-template-columns:1fr 1fr;}
+.histoire-left{padding:100px 72px;background:var(--cream2);}
+.histoire-right{padding:100px 72px;border-left:1px solid var(--border);}
+.timeline{margin-top:40px;display:flex;flex-direction:column;gap:0;}
+.tl-item{display:flex;gap:20px;padding-bottom:36px;position:relative;}
+.tl-item::before{content:'';position:absolute;left:15px;top:28px;bottom:0;width:1px;background:var(--border);}
+.tl-item:last-child::before{display:none;}
+.tl-dot{width:32px;height:32px;border-radius:50%;background:var(--dark);border:2px solid var(--gold);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:10px;color:var(--gold);font-weight:600;}
+.tl-year{font-size:10px;font-weight:600;letter-spacing:0.14em;color:var(--gold);text-transform:uppercase;margin-bottom:4px;}
+.tl-text{font-size:14px;color:var(--text2);line-height:1.7;}
+.checks{display:flex;flex-direction:column;gap:20px;margin-top:36px;}
+.check-item{display:flex;gap:14px;align-items:flex-start;}
+.check-icon{font-size:18px;margin-top:1px;flex-shrink:0;}
+.check-title{font-size:14px;font-weight:500;color:var(--dark);margin-bottom:3px;}
+.check-desc{font-size:13px;color:var(--text2);line-height:1.65;}
 
-  /* EQUIPE */
-  .equipe-grid { display:grid;grid-template-columns:repeat(4,1fr);gap:24px; }
-  .membre-card { text-align:center; }
-  .membre-avatar {
-    width:100%;aspect-ratio:1;border-radius:3px;margin-bottom:18px;
-    display:flex;align-items:center;justify-content:center;
-    font-size:40px;
-  }
-  .av1 { background:linear-gradient(135deg,#d6caaf,#8c7860); }
-  .av2 { background:linear-gradient(135deg,#c0cfd6,#4d7280); }
-  .av3 { background:linear-gradient(135deg,#d4cbb8,#7a6c58); }
-  .av4 { background:linear-gradient(135deg,#c8d4c0,#5c7055); }
-  .membre-name { font-family:'Cormorant Garamond',serif;font-size:19px;font-weight:600;color:var(--dark);margin-bottom:4px; }
-  .membre-role { font-size:11px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);margin-bottom:8px; }
-  .membre-bio { font-size:13px;color:var(--text-light);line-height:1.65; }
+/* EQUIPE */
+.equipe-section{background:var(--cream2);}
+.equipe-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;}
+.membre-card{text-align:center;}
+.membre-photo{aspect-ratio:1;border-radius:2px;overflow:hidden;margin-bottom:18px;}
+.membre-photo-inner{width:100%;height:100%;background-size:cover;background-position:center top;transition:transform 0.5s;}
+.membre-card:hover .membre-photo-inner{transform:scale(1.04);}
+.membre-name{font-family:'Playfair Display',serif;font-size:18px;font-weight:400;color:var(--dark);margin-bottom:4px;}
+.membre-role{font-size:10px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;}
+.membre-bio{font-size:13px;color:var(--text2);line-height:1.65;}
 
-  /* CHIFFRES */
-  .chiffres-section { background:var(--dark); }
-  .chiffres-section .eyebrow { color:var(--gold); }
-  .chiffres-section .eyebrow::before { background:var(--gold); }
-  .chiffres-section .section-title { color:var(--cream); }
-  .chiffres-grid { display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:rgba(196,147,58,0.08);border:1px solid rgba(196,147,58,0.08); }
-  .chiffre-item { background:var(--dark);padding:48px 36px;text-align:center; }
-  .chiffre-num { font-family:'Cormorant Garamond',serif;font-size:52px;font-weight:300;color:var(--gold);line-height:1;margin-bottom:8px; }
-  .chiffre-label { font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:rgba(248,245,239,0.35); }
+/* CHIFFRES */
+.chiffres-section{background:var(--dark);}
+.chiffres-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:rgba(184,146,42,0.06);}
+.chiffre-item{background:var(--dark);padding:48px 36px;text-align:center;}
+.chiffre-num{font-family:'Playfair Display',serif;font-size:52px;font-weight:400;color:var(--gold);line-height:1;margin-bottom:8px;}
+.chiffre-label{font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:rgba(250,247,242,0.3);}
 
-  /* PARTENAIRES */
-  .partenaires { display:flex;align-items:center;gap:48px;flex-wrap:wrap;justify-content:center;padding:60px 64px;border-top:1px solid var(--border); }
-  .partenaire-label { font-size:10px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--warm); }
-  .partenaire-item { font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:600;color:var(--text-light);letter-spacing:0.05em; }
+/* PARTENAIRES */
+.partenaires{display:flex;align-items:center;gap:48px;flex-wrap:wrap;justify-content:center;padding:56px 72px;border-top:1px solid var(--border);}
+.part-label{font-size:10px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--text3);}
+.part-item{font-family:'Playfair Display',serif;font-size:17px;font-weight:400;color:var(--text3);letter-spacing:0.04em;opacity:0.6;transition:opacity 0.2s;}
+.part-item:hover{opacity:1;}
 
-  @media (max-width:900px) {
-    .page-hero { padding:130px 28px 60px; }
-    .valeurs-grid { grid-template-columns:1fr; }
-    .histoire-section { grid-template-columns:1fr; }
-    .histoire-left,.histoire-right { padding:60px 28px; }
-    .equipe-grid { grid-template-columns:1fr 1fr; }
-    .chiffres-grid { grid-template-columns:1fr 1fr; }
-    .partenaires { padding:48px 28px;gap:32px; }
-  }
-  @media (max-width:600px) {
-    .equipe-grid { grid-template-columns:1fr; }
-    .chiffres-grid { grid-template-columns:1fr 1fr; }
-  }
+@media(max-width:900px){
+  .page-hero{grid-template-columns:1fr;}
+  .page-hero-right{padding:48px 28px;}
+  .hero-stat-grid{grid-template-columns:repeat(4,1fr);}
+  .page-hero-left{padding:130px 28px 60px;}
+  .valeurs-grid{grid-template-columns:1fr;}
+  .histoire-section{grid-template-columns:1fr;}
+  .histoire-left,.histoire-right{padding:60px 28px;}
+  .histoire-right{border-left:none;border-top:1px solid var(--border);}
+  .equipe-grid{grid-template-columns:1fr 1fr;}
+  .chiffres-grid{grid-template-columns:1fr 1fr;}
+  .partenaires{padding:40px 28px;gap:28px;}
+}
+@media(max-width:600px){
+  .equipe-grid{grid-template-columns:1fr;}
+  .hero-stat-grid{grid-template-columns:1fr 1fr;}
+}
 </style>
 </head>
 <body>
 <div id="nav-placeholder"></div>
 
 <div class="page-hero">
-  <div class="page-hero-bg"></div>
-  <div class="page-hero-content">
-    <div class="eyebrow" style="color:var(--gold);margin-bottom:16px;">Notre histoire</div>
-    <h1>L'agence <em>Lumière</em></h1>
-    <p class="page-hero-sub">Depuis 2008, nous accompagnons nos clients avec passion, expertise et une exigence absolue de la qualité.</p>
+  <div class="page-hero-left">
+    <div class="page-hero-left-content">
+      <div class="eyebrow fade" style="color:var(--gold)">Notre histoire</div>
+      <h1 class="fade">L'agence <em>Lumière</em></h1>
+      <p class="page-hero-sub fade">Depuis 2008, nous redéfinissons les standards de l'immobilier de prestige à Paris et en Île-de-France.</p>
+    </div>
+  </div>
+  <div class="page-hero-right">
+    <div class="hero-stat-grid fade">
+      <div class="hero-stat"><div class="hero-stat-num">340+</div><div class="hero-stat-label">Biens vendus</div></div>
+      <div class="hero-stat"><div class="hero-stat-num">98%</div><div class="hero-stat-label">Satisfaction</div></div>
+      <div class="hero-stat"><div class="hero-stat-num">15</div><div class="hero-stat-label">Ans d'histoire</div></div>
+      <div class="hero-stat"><div class="hero-stat-num">8</div><div class="hero-stat-label">Experts</div></div>
+    </div>
   </div>
 </div>
 
@@ -103,22 +116,22 @@
   <p class="section-sub fade">Chaque décision que nous prenons est guidée par trois principes fondamentaux.</p>
   <div class="valeurs-grid">
     <div class="valeur-item fade fade-d1">
-      <div class="valeur-num">01</div>
+      <div class="valeur-big-num">01</div>
       <div class="valeur-icon">🎯</div>
       <div class="valeur-title">Excellence</div>
-      <div class="valeur-desc">Nous ne sélectionnons que les biens qui correspondent à des critères stricts de qualité. Chaque annonce est vérifiée et visitée par notre équipe avant publication.</div>
+      <div class="valeur-desc">Chaque bien est sélectionné avec rigueur. Chaque client est accompagné avec le même niveau d'exigence, qu'il achète un studio ou une propriété d'exception.</div>
     </div>
     <div class="valeur-item fade fade-d2">
-      <div class="valeur-num">02</div>
+      <div class="valeur-big-num">02</div>
       <div class="valeur-icon">🤝</div>
       <div class="valeur-title">Confiance</div>
-      <div class="valeur-desc">Notre réputation repose sur la transparence totale — pas de frais cachés, pas de surprise. Chaque client est traité comme nous voudrions l'être.</div>
+      <div class="valeur-desc">Pas de frais cachés, pas de promesses vides. Nous nous engageons sur la transparence totale, de la première rencontre à la signature de l'acte.</div>
     </div>
     <div class="valeur-item fade fade-d3">
-      <div class="valeur-num">03</div>
+      <div class="valeur-big-num">03</div>
       <div class="valeur-icon">💡</div>
       <div class="valeur-title">Innovation</div>
-      <div class="valeur-desc">Nous adoptons les meilleures technologies — visite virtuelle, assistant IA, signature électronique — pour vous faire gagner du temps et de la sérénité.</div>
+      <div class="valeur-desc">Visite virtuelle, assistant IA 24h/24, signature électronique — nous adoptons les meilleures technologies pour vous faire gagner du temps.</div>
     </div>
   </div>
 </section>
@@ -129,99 +142,62 @@
     <div class="eyebrow fade">Notre parcours</div>
     <h2 class="section-title fade" style="margin-bottom:0;">15 ans <em>d'histoire</em></h2>
     <div class="timeline fade">
-      <div class="timeline-item">
-        <div class="timeline-dot">✦</div>
-        <div class="timeline-content">
-          <div class="timeline-year">2008 — Fondation</div>
-          <div class="timeline-text">Création de Lumière Immobilier par Élise Fontaine, avec une vision claire : démocratiser l'accès à l'immobilier premium parisien.</div>
-        </div>
-      </div>
-      <div class="timeline-item">
-        <div class="timeline-dot">✦</div>
-        <div class="timeline-content">
-          <div class="timeline-year">2012 — Expansion IDF</div>
-          <div class="timeline-text">Ouverture de notre périmètre à toute l'Île-de-France, notamment Neuilly, Boulogne et Saint-Cloud.</div>
-        </div>
-      </div>
-      <div class="timeline-item">
-        <div class="timeline-dot">✦</div>
-        <div class="timeline-content">
-          <div class="timeline-year">2018 — Certification</div>
-          <div class="timeline-text">Obtention de la certification ISO 9001 et du label "Agence Qualité Plus" pour notre service client.</div>
-        </div>
-      </div>
-      <div class="timeline-item">
-        <div class="timeline-dot">✦</div>
-        <div class="timeline-content">
-          <div class="timeline-year">2024 — Transformation digitale</div>
-          <div class="timeline-text">Lancement de notre assistant IA et de nos outils digitaux pour offrir un service 24h/24.</div>
-        </div>
-      </div>
+      <div class="tl-item"><div class="tl-dot">✦</div><div><div class="tl-year">2008 — Fondation</div><div class="tl-text">Création de Lumière Immobilier par Élise Fontaine, avec une vision claire : démocratiser l'accès à l'immobilier premium parisien.</div></div></div>
+      <div class="tl-item"><div class="tl-dot">✦</div><div><div class="tl-year">2012 — Expansion IDF</div><div class="tl-text">Ouverture de notre périmètre à toute l'Île-de-France, notamment Neuilly, Boulogne et Saint-Cloud.</div></div></div>
+      <div class="tl-item"><div class="tl-dot">✦</div><div><div class="tl-year">2018 — Certification</div><div class="tl-text">Obtention de la certification ISO 9001 et du label "Agence Qualité Plus" pour notre service client.</div></div></div>
+      <div class="tl-item"><div class="tl-dot">✦</div><div><div class="tl-year">2024 — Innovation</div><div class="tl-text">Lancement de notre assistant IA et des outils digitaux pour offrir un service disponible 24h/24.</div></div></div>
     </div>
   </div>
   <div class="histoire-right">
-    <div class="eyebrow fade">Notre mission</div>
-    <h2 class="section-title fade">Pourquoi nous <em>choisir</em> ?</h2>
-    <p style="font-size:15px;color:var(--text-light);line-height:1.85;margin-bottom:32px;" class="fade">Nous croyons que trouver le bien idéal ne devrait pas être stressant. C'est pourquoi nous avons construit un processus fluide, transparent et humain — où vous êtes toujours informé et accompagné.</p>
-    <div style="display:flex;flex-direction:column;gap:20px;" class="fade">
-      <div style="display:flex;gap:16px;align-items:flex-start;">
-        <span style="font-size:20px;flex-shrink:0;">✅</span>
-        <div><strong style="font-size:14px;color:var(--dark);">Réseau exclusif de biens off-market</strong><p style="font-size:13px;color:var(--text-light);line-height:1.65;margin-top:3px;">Accédez à des biens non publiés sur les plateformes grand public.</p></div>
-      </div>
-      <div style="display:flex;gap:16px;align-items:flex-start;">
-        <span style="font-size:20px;flex-shrink:0;">✅</span>
-        <div><strong style="font-size:14px;color:var(--dark);">Un interlocuteur dédié du début à la fin</strong><p style="font-size:13px;color:var(--text-light);line-height:1.65;margin-top:3px;">Votre conseiller unique vous accompagne de la première visite à la signature.</p></div>
-      </div>
-      <div style="display:flex;gap:16px;align-items:flex-start;">
-        <span style="font-size:20px;flex-shrink:0;">✅</span>
-        <div><strong style="font-size:14px;color:var(--dark);">Estimation gratuite sous 48h</strong><p style="font-size:13px;color:var(--text-light);line-height:1.65;margin-top:3px;">Nos experts se déplacent pour évaluer précisément la valeur de votre bien.</p></div>
-      </div>
-      <div style="display:flex;gap:16px;align-items:flex-start;">
-        <span style="font-size:20px;flex-shrink:0;">✅</span>
-        <div><strong style="font-size:14px;color:var(--dark);">Disponibilité le soir et le week-end</strong><p style="font-size:13px;color:var(--text-light);line-height:1.65;margin-top:3px;">Nous nous adaptons à votre emploi du temps, pas l'inverse.</p></div>
-      </div>
+    <div class="eyebrow fade">Pourquoi nous choisir</div>
+    <h2 class="section-title fade">Notre <em>différence</em></h2>
+    <div class="checks fade">
+      <div class="check-item"><div class="check-icon">✅</div><div><div class="check-title">Réseau exclusif de biens off-market</div><div class="check-desc">Accédez à des biens non publiés sur les plateformes grand public, réservés à nos clients.</div></div></div>
+      <div class="check-item"><div class="check-icon">✅</div><div><div class="check-title">Un interlocuteur dédié du début à la fin</div><div class="check-desc">Votre conseiller unique vous accompagne de la première visite à la signature chez le notaire.</div></div></div>
+      <div class="check-item"><div class="check-icon">✅</div><div><div class="check-title">Estimation gratuite sous 48h</div><div class="check-desc">Nos experts se déplacent pour évaluer précisément la valeur de votre bien sur le marché actuel.</div></div></div>
+      <div class="check-item"><div class="check-icon">✅</div><div><div class="check-title">Disponibilité soir et week-end</div><div class="check-desc">Nous nous adaptons à votre emploi du temps, pas l'inverse. Joignables jusqu'à 19h en semaine.</div></div></div>
     </div>
   </div>
 </div>
 
 <!-- EQUIPE -->
-<section class="section" style="background:var(--cream2);">
+<section class="section equipe-section">
   <div class="eyebrow fade">Les visages de Lumière</div>
   <h2 class="section-title fade">Notre <em>équipe</em></h2>
-  <p class="section-sub fade">8 experts passionnés à votre service, avec une expérience moyenne de 12 ans dans l'immobilier parisien.</p>
+  <p class="section-sub fade">8 experts passionnés, avec une expérience moyenne de 12 ans dans l'immobilier parisien.</p>
   <div class="equipe-grid">
     <div class="membre-card fade fade-d1">
-      <div class="membre-avatar av1">👩‍💼</div>
+      <div class="membre-photo"><div class="membre-photo-inner" style="background-image:url('https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&q=80')"></div></div>
       <div class="membre-name">Élise Fontaine</div>
       <div class="membre-role">Fondatrice & Directrice</div>
-      <div class="membre-bio">15 ans d'expérience. Ancienne notaire reconvertie dans l'immobilier de prestige. Spécialiste Paris Ouest.</div>
+      <div class="membre-bio">15 ans d'expérience. Ancienne notaire, spécialiste Paris Ouest et biens d'exception.</div>
     </div>
     <div class="membre-card fade fade-d2">
-      <div class="membre-avatar av2">👨‍💼</div>
+      <div class="membre-photo"><div class="membre-photo-inner" style="background-image:url('https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&q=80')"></div></div>
       <div class="membre-name">Thomas Berard</div>
       <div class="membre-role">Directeur des Ventes</div>
-      <div class="membre-bio">Expert en transaction. Spécialiste des appartements Haussmanniens et des biens atypiques parisiens.</div>
+      <div class="membre-bio">Expert en transaction. Spécialiste des appartements Haussmanniens et biens atypiques.</div>
     </div>
     <div class="membre-card fade fade-d3">
-      <div class="membre-avatar av3">👩‍💼</div>
+      <div class="membre-photo"><div class="membre-photo-inner" style="background-image:url('https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&q=80')"></div></div>
       <div class="membre-name">Camille Rousseau</div>
       <div class="membre-role">Responsable Location</div>
-      <div class="membre-bio">Spécialiste de la gestion locative et de l'investissement. Connaissance approfondie de l'IDF.</div>
+      <div class="membre-bio">Spécialiste gestion locative et investissement. Connaissance approfondie de l'IDF.</div>
     </div>
     <div class="membre-card fade fade-d4">
-      <div class="membre-avatar av4">👨‍💼</div>
+      <div class="membre-photo"><div class="membre-photo-inner" style="background-image:url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80')"></div></div>
       <div class="membre-name">Marc Leblanc</div>
       <div class="membre-role">Expert Investissement</div>
-      <div class="membre-bio">Ancien analyste financier. Accompagne les investisseurs dans l'optimisation de leur patrimoine immobilier.</div>
+      <div class="membre-bio">Ancien analyste financier. Accompagne les investisseurs dans l'optimisation patrimoniale.</div>
     </div>
   </div>
 </section>
 
 <!-- CHIFFRES -->
 <section class="section chiffres-section">
-  <div class="eyebrow fade">En chiffres</div>
+  <div class="eyebrow fade" style="color:var(--gold)">En chiffres</div>
   <h2 class="section-title fade" style="color:var(--cream);">15 ans de <em>résultats</em></h2>
-  <p class="section-sub fade" style="color:rgba(248,245,239,0.4);margin-bottom:48px;">Des chiffres qui témoignent de notre engagement quotidien.</p>
+  <p class="section-sub fade" style="color:rgba(250,247,242,0.35);margin-bottom:48px;">Des chiffres qui témoignent de notre engagement quotidien.</p>
   <div class="chiffres-grid">
     <div class="chiffre-item fade fade-d1"><div class="chiffre-num">340+</div><div class="chiffre-label">Biens vendus</div></div>
     <div class="chiffre-item fade fade-d2"><div class="chiffre-num">98%</div><div class="chiffre-label">Clients satisfaits</div></div>
@@ -232,12 +208,12 @@
 
 <!-- PARTENAIRES -->
 <div class="partenaires fade">
-  <span class="partenaire-label">Nos partenaires :</span>
-  <span class="partenaire-item">Crédit Agricole</span>
-  <span class="partenaire-item">Notaires de Paris</span>
-  <span class="partenaire-item">BNP Paribas</span>
-  <span class="partenaire-item">FNAIM</span>
-  <span class="partenaire-item">Century 21</span>
+  <span class="part-label">Partenaires :</span>
+  <span class="part-item">Crédit Agricole</span>
+  <span class="part-item">Notaires de Paris</span>
+  <span class="part-item">BNP Paribas</span>
+  <span class="part-item">FNAIM</span>
+  <span class="part-item">Century 21</span>
 </div>
 
 <div id="footer-placeholder"></div>
