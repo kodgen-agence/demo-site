@@ -1,142 +1,87 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Nos Biens — Lumière Immobilier</title>
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%2316140f'/><text x='50%25' y='54%25' dominant-baseline='central' text-anchor='middle' font-family='Georgia,serif' font-weight='700' font-size='20' fill='%23c4933a'>L</text></svg>">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%230e0d0a'/><text x='50%25' y='54%25' dominant-baseline='central' text-anchor='middle' font-family='Georgia,serif' font-weight='700' font-size='20' fill='%23b8922a'>L</text></svg>">
 <link rel="stylesheet" href="style.css">
 <style>
-  .page-hero {
-    background: var(--dark2);
-    padding: 160px 64px 80px;
-    position: relative; overflow: hidden;
-  }
-  .page-hero-bg {
-    position: absolute; inset: 0;
-    background: repeating-linear-gradient(45deg, transparent, transparent 60px, rgba(196,147,58,0.025) 60px, rgba(196,147,58,0.025) 61px);
-  }
-  .page-hero-content { position: relative; z-index: 1; }
-  .page-hero h1 {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(40px, 5vw, 68px);
-    font-weight: 300; color: var(--cream);
-    margin-bottom: 16px; line-height: 1.08;
-  }
-  .page-hero h1 em { color: var(--gold); font-style: italic; }
-  .page-hero-sub { font-size: 15px; color: rgba(248,245,239,0.5); max-width: 480px; line-height: 1.8; }
+.page-hero{background:var(--dark2);padding:160px 72px 80px;position:relative;overflow:hidden;}
+.page-hero::before{content:'';position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1486325212027-8081e485255e?w=1600&q=70') center/cover no-repeat;opacity:0.06;}
+.page-hero-content{position:relative;z-index:1;}
+.page-hero h1{font-family:'Playfair Display',serif;font-size:clamp(40px,5vw,68px);font-weight:400;color:var(--cream);margin-bottom:16px;line-height:1.08;}
+.page-hero h1 em{color:var(--gold);font-style:italic;}
+.page-hero-sub{font-size:15px;color:rgba(250,247,242,0.45);max-width:480px;line-height:1.8;}
 
-  /* FILTERS */
-  .filters-bar {
-    background: white;
-    padding: 28px 64px;
-    border-bottom: 1px solid var(--border);
-    display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
-    position: sticky; top: 70px; z-index: 50;
-    box-shadow: 0 4px 20px rgba(22,20,15,0.06);
-  }
-  .filter-label { font-size: 10px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--warm); margin-right: 4px; }
-  .filter-btn {
-    background: none; border: 1px solid var(--border);
-    color: var(--text-light); font-family: 'Jost', sans-serif;
-    font-size: 12px; font-weight: 400;
-    padding: 8px 18px; border-radius: 100px; cursor: pointer;
-    transition: all 0.2s; white-space: nowrap;
-  }
-  .filter-btn:hover { border-color: var(--gold); color: var(--gold); }
-  .filter-btn.active { background: var(--dark); border-color: var(--dark); color: var(--gold-light); }
-  .filter-sep { width: 1px; height: 24px; background: var(--border); margin: 0 4px; }
+.filters-bar{background:var(--white);padding:24px 72px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:14px;flex-wrap:wrap;position:sticky;top:70px;z-index:50;box-shadow:0 4px 24px rgba(14,13,10,0.06);}
+.filter-label{font-size:10px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--warm);margin-right:4px;}
+.filter-btn{background:none;border:1px solid var(--border);color:var(--text2);font-family:'Outfit',sans-serif;font-size:12px;font-weight:400;padding:8px 18px;border-radius:100px;cursor:pointer;transition:all 0.22s;white-space:nowrap;}
+.filter-btn:hover{border-color:var(--gold);color:var(--gold);}
+.filter-btn.active{background:var(--dark);border-color:var(--dark);color:var(--gold3);}
+.filter-sep{width:1px;height:22px;background:var(--border);margin:0 4px;}
 
-  /* BIENS GRID */
-  .biens-section { padding: 64px; }
-  .biens-count { font-size: 13px; color: var(--text-light); margin-bottom: 32px; }
-  .biens-count strong { color: var(--dark); }
-  .biens-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; }
+.biens-section{padding:60px 72px;}
+.biens-count{font-size:13px;color:var(--text3);margin-bottom:28px;} .biens-count strong{color:var(--dark);}
+.biens-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
 
-  .bien-card {
-    background: white; border-radius: 2px; overflow: hidden;
-    transition: transform 0.35s cubic-bezier(0.4,0,0.2,1), box-shadow 0.35s;
-    cursor: pointer; border: 1px solid var(--border);
-  }
-  .bien-card:hover { transform: translateY(-5px); box-shadow: 0 20px 60px rgba(22,20,15,0.12); border-color: transparent; }
-  .bien-card.hidden { display: none; }
+.bien-card{background:var(--white);border-radius:2px;overflow:hidden;cursor:pointer;border:1px solid var(--border);transition:transform 0.4s cubic-bezier(0.4,0,0.2,1),box-shadow 0.4s,border-color 0.3s;}
+.bien-card:hover{transform:translateY(-5px);box-shadow:var(--shadow);border-color:transparent;}
+.bien-card.hidden{display:none;}
+.bien-img{height:220px;position:relative;overflow:hidden;}
+.bien-img-bg{width:100%;height:100%;background-size:cover;background-position:center;transition:transform 0.55s cubic-bezier(0.4,0,0.2,1);}
+.bien-card:hover .bien-img-bg{transform:scale(1.07);}
+.bien-img-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(14,13,10,0.45) 0%,transparent 55%);}
+.bien-badges{position:absolute;top:14px;left:14px;display:flex;gap:6px;}
+.tag{display:inline-block;font-size:9px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;padding:5px 12px;border-radius:1px;}
+.tag-dark{background:var(--dark);color:var(--gold3);}
+.tag-gold{background:var(--gold);color:var(--white);}
+.tag-outline{border:1px solid rgba(250,247,242,0.45);color:rgba(250,247,242,0.9);background:none;}
 
-  .bien-img { height: 210px; position: relative; overflow: hidden; }
-  .bien-img-bg { width:100%; height:100%; transition: transform 0.45s cubic-bezier(0.4,0,0.2,1); }
-  .bien-card:hover .bien-img-bg { transform: scale(1.06); }
-  .bien-img-overlay { position:absolute; inset:0; background: linear-gradient(to top, rgba(22,20,15,0.4) 0%, transparent 55%); }
-  .bien-badges { position:absolute; top:14px; left:14px; display:flex; gap:6px; }
+.bien-body{padding:22px 24px 24px;}
+.bien-price{font-family:'Playfair Display',serif;font-size:21px;font-weight:400;color:var(--dark);margin-bottom:4px;}
+.bien-title{font-size:14px;font-weight:400;color:var(--text);margin-bottom:3px;}
+.bien-loc{font-size:12px;color:var(--text3);margin-bottom:12px;}
+.bien-desc{font-size:13px;color:var(--text2);line-height:1.65;margin-bottom:14px;padding-top:14px;border-top:1px solid var(--border);}
+.bien-specs{display:flex;gap:14px;flex-wrap:wrap;}
+.spec{font-size:11px;color:var(--text3);}
+.bien-cta-row{display:flex;justify-content:space-between;align-items:center;margin-top:14px;padding-top:14px;border-top:1px solid var(--border);}
+.bien-cta-btn{background:var(--dark);color:var(--gold3);font-family:'Outfit',sans-serif;font-size:10px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;padding:9px 18px;border-radius:1px;border:none;cursor:pointer;transition:background 0.2s;}
+.bien-cta-btn:hover{background:var(--dark2);}
+.bien-ref{font-size:10px;color:var(--text3);letter-spacing:0.08em;}
 
-  .p1 { background: linear-gradient(135deg, #d6caaf 0%, #b8a488 35%, #8c7860 70%, #6b5c48 100%); }
-  .p2 { background: linear-gradient(135deg, #c0cfd6 0%, #98b2bc 35%, #6a8e98 70%, #4d7280 100%); }
-  .p3 { background: linear-gradient(135deg, #d4cbb8 0%, #bfb098 35%, #9a8870 70%, #7a6c58 100%); }
-  .p4 { background: linear-gradient(135deg, #c8d4c0 0%, #a8b898 35%, #7a9070 70%, #5c7055 100%); }
-  .p5 { background: linear-gradient(135deg, #d0c4b0 0%, #b8a890 35%, #9a8c78 70%, #7c7060 100%); }
+.estimation-cta{background:var(--dark2);padding:72px;display:flex;align-items:center;justify-content:space-between;gap:40px;flex-wrap:wrap;border-top:1px solid rgba(184,146,42,0.06);}
+.estimation-cta-label{font-size:10px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:12px;}
+.estimation-cta-title{font-family:'Playfair Display',serif;font-size:clamp(24px,3vw,38px);font-weight:300;color:var(--cream);line-height:1.2;}
 
-  .bien-body { padding: 20px 22px 22px; }
-  .bien-price { font-family:'Cormorant Garamond',serif; font-size:22px; font-weight:600; color:var(--dark); margin-bottom:4px; }
-  .bien-title { font-size:14px; font-weight:500; color:var(--text); margin-bottom:3px; }
-  .bien-loc { font-size:12px; color:var(--text-light); margin-bottom:14px; }
-  .bien-desc { font-size:13px; color:var(--text-light); line-height:1.65; margin-bottom:16px; padding-top:14px; border-top:1px solid var(--border); }
-  .bien-specs { display:flex; gap:14px; flex-wrap:wrap; }
-  .spec { font-size:11px; color:var(--text-light); display:flex; align-items:center; gap:4px; }
+#modal{display:none;position:fixed;inset:0;z-index:600;background:rgba(14,13,10,0.75);backdrop-filter:blur(8px);align-items:center;justify-content:center;padding:24px;}
+#modal.open{display:flex;}
+.modal-box{background:var(--cream);border-radius:4px;padding:52px;max-width:500px;width:100%;position:relative;box-shadow:0 48px 100px rgba(14,13,10,0.35);animation:mIn 0.3s ease;}
+@keyframes mIn{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+.modal-close{position:absolute;top:20px;right:20px;background:none;border:none;font-size:22px;cursor:pointer;color:var(--text3);}
+.modal-eyebrow{font-size:9px;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;color:var(--gold);margin-bottom:12px;}
+.modal-title{font-family:'Playfair Display',serif;font-size:26px;font-weight:400;color:var(--dark);margin-bottom:28px;}
+.mform{display:flex;flex-direction:column;gap:14px;}
+.mfg{display:flex;flex-direction:column;gap:6px;}
+.mfg label{font-size:10px;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:var(--warm);}
+.mfg input,.mfg select{background:var(--cream2);border:1px solid var(--border);border-radius:1px;padding:12px 16px;font-family:'Outfit',sans-serif;font-size:14px;color:var(--text);outline:none;transition:border-color 0.2s;}
+.mfg input:focus,.mfg select:focus{border-color:var(--gold);}
+.modal-submit{background:var(--dark);color:var(--gold3);border:none;padding:14px 32px;font-family:'Outfit',sans-serif;font-size:11px;font-weight:500;letter-spacing:0.16em;text-transform:uppercase;cursor:pointer;border-radius:1px;transition:background 0.2s;margin-top:4px;align-self:flex-start;}
+.modal-submit:hover{background:var(--dark2);}
 
-  .bien-cta {
-    display:flex; justify-content:space-between; align-items:center;
-    margin-top:16px; padding-top:16px; border-top:1px solid var(--border);
-  }
-  .bien-cta-btn {
-    background: var(--dark); color: var(--gold-light);
-    font-family:'Jost',sans-serif; font-size:10px; font-weight:500;
-    letter-spacing:0.14em; text-transform:uppercase;
-    padding:9px 18px; border-radius:2px; border:none; cursor:pointer;
-    transition: background 0.2s;
-  }
-  .bien-cta-btn:hover { background: var(--dark2); }
-  .bien-ref { font-size:10px; color:var(--text-light); letter-spacing:0.08em; }
-
-  /* Empty state */
-  .empty-state {
-    grid-column: 1/-1; text-align:center; padding:80px 0;
-    color:var(--text-light);
-  }
-  .empty-icon { font-size:48px; margin-bottom:16px; }
-  .empty-title { font-family:'Cormorant Garamond',serif; font-size:24px; font-weight:300; color:var(--dark); margin-bottom:8px; }
-
-  /* ESTIMATION CTA */
-  .estimation-cta {
-    background: var(--dark2);
-    padding: 80px 64px;
-    display: flex; align-items: center; justify-content: space-between; gap:40px; flex-wrap:wrap;
-    border-top: 1px solid rgba(196,147,58,0.08);
-  }
-  .estimation-cta-left {}
-  .estimation-cta-label { font-size:10px; font-weight:600; letter-spacing:0.2em; text-transform:uppercase; color:var(--gold); margin-bottom:12px; }
-  .estimation-cta-title { font-family:'Cormorant Garamond',serif; font-size:clamp(24px,3vw,38px); font-weight:300; color:var(--cream); line-height:1.2; }
-
-  @media (max-width:900px) {
-    .page-hero { padding:130px 28px 60px; }
-    .filters-bar { padding:20px 28px; top:60px; }
-    .biens-section { padding:48px 28px; }
-    .biens-grid { grid-template-columns:1fr; }
-    .estimation-cta { padding:60px 28px; }
-  }
+@media(max-width:900px){.page-hero{padding:130px 28px 60px;}.filters-bar{padding:18px 28px;}.biens-section{padding:48px 28px;}.biens-grid{grid-template-columns:1fr;}.estimation-cta{padding:56px 28px;}}
 </style>
 </head>
 <body>
 <div id="nav-placeholder"></div>
 
-<!-- HERO -->
 <div class="page-hero">
-  <div class="page-hero-bg"></div>
   <div class="page-hero-content">
-    <div class="eyebrow" style="color:var(--gold);margin-bottom:16px;">Notre catalogue</div>
-    <h1>Nos <em>biens</em> disponibles</h1>
-    <p class="page-hero-sub">Découvrez notre sélection de biens à la vente et à la location à Paris et en Île-de-France.</p>
+    <div class="eyebrow fade" style="color:var(--gold)">Notre catalogue</div>
+    <h1 class="fade">Nos <em>biens</em> disponibles</h1>
+    <p class="page-hero-sub fade">Découvrez notre sélection de biens d'exception à la vente et à la location à Paris et en Île-de-France.</p>
   </div>
 </div>
 
-<!-- FILTERS -->
 <div class="filters-bar">
   <span class="filter-label">Filtrer :</span>
   <button class="filter-btn active" data-filter="all">Tous les biens</button>
@@ -147,189 +92,121 @@
   <button class="filter-btn" data-filter="idf">Île-de-France</button>
 </div>
 
-<!-- BIENS -->
 <div class="biens-section">
   <div class="biens-count">Affichage de <strong id="count">5</strong> biens</div>
   <div class="biens-grid" id="biens-grid">
 
     <div class="bien-card fade" data-statut="vente" data-zone="paris">
-      <div class="bien-img">
-        <div class="bien-img-bg p1"></div>
-        <div class="bien-img-overlay"></div>
-        <div class="bien-badges"><span class="tag tag-dark">Vente</span><span class="tag tag-gold">Coup de cœur</span></div>
-      </div>
+      <div class="bien-img"><div class="bien-img-bg" style="background-image:url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&q=80')"></div><div class="bien-img-overlay"></div><div class="bien-badges"><span class="tag tag-dark">Vente</span><span class="tag tag-gold">Coup de cœur</span></div></div>
       <div class="bien-body">
         <div class="bien-price">1 290 000 €</div>
         <div class="bien-title">Appartement Haussmannien 4 pièces</div>
         <div class="bien-loc">📍 Paris 8e arrondissement</div>
-        <div class="bien-desc">Magnifique appartement Haussmannien entièrement rénové. Parquet ancien, moulures d'époque, double exposition Sud-Ouest. Gardien. Cave.</div>
-        <div class="bien-specs">
-          <div class="spec">🏠 120 m²</div>
-          <div class="spec">🛏 3 ch.</div>
-          <div class="spec">🏢 3e ét. avec asc.</div>
-          <div class="spec">✨ Rénové 2023</div>
-        </div>
-        <div class="bien-cta">
-          <button class="bien-cta-btn" onclick="openModal(this)">Demander une visite</button>
-          <span class="bien-ref">Réf. LI-2401</span>
-        </div>
+        <div class="bien-desc">Magnifique appartement Haussmannien entièrement rénové. Parquet ancien, moulures d'époque, double exposition Sud-Ouest. Gardien, cave. Métro George V.</div>
+        <div class="bien-specs"><span class="spec">🏠 120 m²</span><span class="spec">🛏 3 ch.</span><span class="spec">🏢 3e ét. + asc.</span><span class="spec">✨ Rénové 2023</span></div>
+        <div class="bien-cta-row"><button class="bien-cta-btn" onclick="openModal('Appartement Haussmannien — Paris 8e')">Demander une visite</button><span class="bien-ref">Réf. LI-2401</span></div>
       </div>
     </div>
 
     <div class="bien-card fade fade-d1" data-statut="location" data-zone="idf">
-      <div class="bien-img">
-        <div class="bien-img-bg p2"></div>
-        <div class="bien-img-overlay"></div>
-        <div class="bien-badges"><span class="tag tag-dark">Location</span></div>
-      </div>
+      <div class="bien-img"><div class="bien-img-bg" style="background-image:url('https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&q=80')"></div><div class="bien-img-overlay"></div><div class="bien-badges"><span class="tag tag-dark">Location</span></div></div>
       <div class="bien-body">
-        <div class="bien-price">3 200 € <span style="font-family:'Jost';font-size:14px;font-weight:300;color:var(--text-light)">/mois</span></div>
-        <div class="bien-title">Loft moderne 3 pièces</div>
+        <div class="bien-price">3 200 € <span style="font-family:'Outfit';font-size:13px;font-weight:300;color:var(--text3)">/mois</span></div>
+        <div class="bien-title">Loft contemporain 3 pièces</div>
         <div class="bien-loc">📍 Neuilly-sur-Seine</div>
-        <div class="bien-desc">Superbe loft contemporain avec terrasse de 12m². Cuisine ouverte entièrement équipée, très lumineux, exposition Sud.</div>
-        <div class="bien-specs">
-          <div class="spec">🏠 85 m²</div>
-          <div class="spec">🛏 2 ch.</div>
-          <div class="spec">🏢 2e ét.</div>
-          <div class="spec">🌿 Terrasse 12m²</div>
-        </div>
-        <div class="bien-cta">
-          <button class="bien-cta-btn" onclick="openModal(this)">Demander une visite</button>
-          <span class="bien-ref">Réf. LI-2402</span>
-        </div>
+        <div class="bien-desc">Superbe loft avec terrasse de 12m². Cuisine ouverte entièrement équipée, très lumineux, exposition Sud. Proche Porte Maillot.</div>
+        <div class="bien-specs"><span class="spec">🏠 85 m²</span><span class="spec">🛏 2 ch.</span><span class="spec">🌿 Terrasse 12m²</span><span class="spec">🏢 2e ét.</span></div>
+        <div class="bien-cta-row"><button class="bien-cta-btn" onclick="openModal('Loft contemporain — Neuilly-sur-Seine')">Demander une visite</button><span class="bien-ref">Réf. LI-2402</span></div>
       </div>
     </div>
 
     <div class="bien-card fade fade-d2" data-statut="vente" data-zone="idf">
-      <div class="bien-img">
-        <div class="bien-img-bg p3"></div>
-        <div class="bien-img-overlay"></div>
-        <div class="bien-badges"><span class="tag tag-dark">Vente</span><span class="tag tag-outline">Nouveau</span></div>
-      </div>
+      <div class="bien-img"><div class="bien-img-bg" style="background-image:url('https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=800&q=80')"></div><div class="bien-img-overlay"></div><div class="bien-badges"><span class="tag tag-dark">Vente</span><span class="tag tag-outline">Nouveau</span></div></div>
       <div class="bien-body">
         <div class="bien-price">680 000 €</div>
         <div class="bien-title">Duplex lumineux 3 pièces</div>
         <div class="bien-loc">📍 Boulogne-Billancourt</div>
-        <div class="bien-desc">Duplex traversant au calme, vue dégagée, parking en sous-sol inclus. Proche Métro Marcel Sembat (L9).</div>
-        <div class="bien-specs">
-          <div class="spec">🏠 75 m²</div>
-          <div class="spec">🛏 2 ch.</div>
-          <div class="spec">📐 Duplex 4e/5e</div>
-          <div class="spec">🚗 Parking</div>
-        </div>
-        <div class="bien-cta">
-          <button class="bien-cta-btn" onclick="openModal(this)">Demander une visite</button>
-          <span class="bien-ref">Réf. LI-2403</span>
-        </div>
+        <div class="bien-desc">Duplex traversant au calme, vue dégagée, parking en sous-sol inclus. Proche Métro Marcel Sembat (L9). Idéal famille.</div>
+        <div class="bien-specs"><span class="spec">🏠 75 m²</span><span class="spec">🛏 2 ch.</span><span class="spec">📐 Duplex 4e/5e</span><span class="spec">🚗 Parking</span></div>
+        <div class="bien-cta-row"><button class="bien-cta-btn" onclick="openModal('Duplex — Boulogne-Billancourt')">Demander une visite</button><span class="bien-ref">Réf. LI-2403</span></div>
       </div>
     </div>
 
     <div class="bien-card fade fade-d1" data-statut="location" data-zone="paris">
-      <div class="bien-img">
-        <div class="bien-img-bg p4"></div>
-        <div class="bien-img-overlay"></div>
-        <div class="bien-badges"><span class="tag tag-dark">Location</span></div>
-      </div>
+      <div class="bien-img"><div class="bien-img-bg" style="background-image:url('https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800&q=80')"></div><div class="bien-img-overlay"></div><div class="bien-badges"><span class="tag tag-dark">Location</span></div></div>
       <div class="bien-body">
-        <div class="bien-price">1 400 € <span style="font-family:'Jost';font-size:14px;font-weight:300;color:var(--text-light)">/mois</span></div>
+        <div class="bien-price">1 400 € <span style="font-family:'Outfit';font-size:13px;font-weight:300;color:var(--text3)">/mois</span></div>
         <div class="bien-title">Studio refait à neuf</div>
         <div class="bien-loc">📍 Paris 15e arrondissement</div>
-        <div class="bien-desc">Studio entièrement refait à neuf en 2024. Calme absolu en cœur d'îlot. Digicode, interphone. Proche Métro Vaugirard.</div>
-        <div class="bien-specs">
-          <div class="spec">🏠 32 m²</div>
-          <div class="spec">🛏 Studio</div>
-          <div class="spec">🏢 1er ét.</div>
-          <div class="spec">✨ Neuf 2024</div>
-        </div>
-        <div class="bien-cta">
-          <button class="bien-cta-btn" onclick="openModal(this)">Demander une visite</button>
-          <span class="bien-ref">Réf. LI-2404</span>
-        </div>
+        <div class="bien-desc">Studio entièrement refait à neuf en 2024. Calme absolu en cœur d'îlot, digicode, interphone. Proche Métro Vaugirard.</div>
+        <div class="bien-specs"><span class="spec">🏠 32 m²</span><span class="spec">🛏 Studio</span><span class="spec">🏢 1er ét.</span><span class="spec">✨ Neuf 2024</span></div>
+        <div class="bien-cta-row"><button class="bien-cta-btn" onclick="openModal('Studio — Paris 15e')">Demander une visite</button><span class="bien-ref">Réf. LI-2404</span></div>
       </div>
     </div>
 
     <div class="bien-card fade fade-d2" data-statut="vente" data-zone="idf">
-      <div class="bien-img">
-        <div class="bien-img-bg p5"></div>
-        <div class="bien-img-overlay"></div>
-        <div class="bien-badges"><span class="tag tag-dark">Vente</span><span class="tag tag-gold">Exclusivité</span></div>
-      </div>
+      <div class="bien-img"><div class="bien-img-bg" style="background-image:url('https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=800&q=80')"></div><div class="bien-img-overlay"></div><div class="bien-badges"><span class="tag tag-dark">Vente</span><span class="tag tag-gold">Exclusivité</span></div></div>
       <div class="bien-body">
         <div class="bien-price">1 850 000 €</div>
         <div class="bien-title">Maison avec jardin 6 pièces</div>
         <div class="bien-loc">📍 Saint-Cloud</div>
-        <div class="bien-desc">Magnifique maison de famille avec jardin arboré de 300m². Garage double, cuisine d'été, quartier résidentiel prisé.</div>
-        <div class="bien-specs">
-          <div class="spec">🏠 180 m²</div>
-          <div class="spec">🛏 4 ch.</div>
-          <div class="spec">🌳 Jardin 300m²</div>
-          <div class="spec">🚗 Garage x2</div>
-        </div>
-        <div class="bien-cta">
-          <button class="bien-cta-btn" onclick="openModal(this)">Demander une visite</button>
-          <span class="bien-ref">Réf. LI-2405</span>
-        </div>
+        <div class="bien-desc">Magnifique maison de famille avec jardin arboré de 300m². Garage double, cuisine d'été. Quartier résidentiel prisé, proche écoles et commerces.</div>
+        <div class="bien-specs"><span class="spec">🏠 180 m²</span><span class="spec">🛏 4 ch.</span><span class="spec">🌳 Jardin 300m²</span><span class="spec">🚗 Garage x2</span></div>
+        <div class="bien-cta-row"><button class="bien-cta-btn" onclick="openModal('Maison — Saint-Cloud')">Demander une visite</button><span class="bien-ref">Réf. LI-2405</span></div>
       </div>
     </div>
 
   </div>
 </div>
 
-<!-- ESTIMATION CTA -->
-<div class="estimation-cta">
-  <div class="estimation-cta-left">
+<div class="estimation-cta fade">
+  <div>
     <div class="estimation-cta-label">Vous vendez ?</div>
-    <div class="estimation-cta-title">Obtenez une estimation<br>gratuite en 48h</div>
+    <div class="estimation-cta-title">Estimation gratuite<br>en 48h par un expert</div>
   </div>
   <a href="contact.html" class="btn btn-gold">Demander une estimation →</a>
 </div>
 
-<!-- MODAL VISITE -->
-<div id="modal" style="display:none;position:fixed;inset:0;z-index:600;background:rgba(22,20,15,0.7);backdrop-filter:blur(8px);align-items:center;justify-content:center;">
-  <div style="background:var(--cream);border-radius:4px;padding:48px;max-width:480px;width:90%;position:relative;box-shadow:0 40px 100px rgba(0,0,0,0.3);">
-    <button onclick="closeModal()" style="position:absolute;top:20px;right:20px;background:none;border:none;font-size:22px;cursor:pointer;color:var(--warm);">×</button>
-    <div class="eyebrow" style="margin-bottom:16px;">Demande de visite</div>
-    <h3 style="font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:300;color:var(--dark);margin-bottom:28px;">Organisons une visite</h3>
-    <div style="display:flex;flex-direction:column;gap:14px;">
-      <div><label style="font-size:10px;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:var(--warm);display:block;margin-bottom:6px;">Prénom & Nom</label><input type="text" placeholder="Jean Dupont" style="width:100%;background:var(--cream2);border:1px solid var(--border);border-radius:2px;padding:12px 16px;font-family:'Jost',sans-serif;font-size:14px;color:var(--text);outline:none;"></div>
-      <div><label style="font-size:10px;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:var(--warm);display:block;margin-bottom:6px;">Téléphone</label><input type="tel" placeholder="06 00 00 00 00" style="width:100%;background:var(--cream2);border:1px solid var(--border);border-radius:2px;padding:12px 16px;font-family:'Jost',sans-serif;font-size:14px;color:var(--text);outline:none;"></div>
-      <div><label style="font-size:10px;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:var(--warm);display:block;margin-bottom:6px;">Disponibilités</label><input type="text" placeholder="Ex : Mardi ou jeudi matin" style="width:100%;background:var(--cream2);border:1px solid var(--border);border-radius:2px;padding:12px 16px;font-family:'Jost',sans-serif;font-size:14px;color:var(--text);outline:none;"></div>
-      <button onclick="closeModal()" style="background:var(--dark);color:var(--gold-light);border:none;padding:14px;font-family:'Jost',sans-serif;font-size:11px;font-weight:500;letter-spacing:0.16em;text-transform:uppercase;cursor:pointer;border-radius:2px;margin-top:8px;transition:background 0.2s;" onmouseover="this.style.background='var(--dark2)'" onmouseout="this.style.background='var(--dark)'">Confirmer ma demande</button>
+<div id="modal">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal()">×</button>
+    <div class="modal-eyebrow">Demande de visite</div>
+    <div class="modal-title" id="modal-bien-name">Organisons une visite</div>
+    <div class="mform">
+      <div class="mfg"><label>Prénom & Nom</label><input type="text" placeholder="Jean Dupont"></div>
+      <div class="mfg"><label>Téléphone</label><input type="tel" placeholder="06 00 00 00 00"></div>
+      <div class="mfg"><label>Disponibilités</label><input type="text" placeholder="Ex : Mardi ou jeudi matin"></div>
+      <button class="modal-submit" onclick="closeModal()">Confirmer ma demande →</button>
     </div>
   </div>
 </div>
 
 <div id="footer-placeholder"></div>
 <div id="chat-placeholder"></div>
-
 <script src="shared.js"></script>
 <script src="chat.js"></script>
 <script>
   // Filters
-  const btns = document.querySelectorAll('.filter-btn');
-  const cards = document.querySelectorAll('.bien-card');
-  const countEl = document.getElementById('count');
-
-  btns.forEach(btn => {
+  document.querySelectorAll('.filter-btn').forEach(btn => {
     btn.addEventListener('click', () => {
-      btns.forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
       const f = btn.dataset.filter;
-      let visible = 0;
-      cards.forEach(card => {
-        const show = f === 'all' || card.dataset.statut === f || card.dataset.zone === f;
-        card.classList.toggle('hidden', !show);
-        if (show) visible++;
+      let n = 0;
+      document.querySelectorAll('.bien-card').forEach(c => {
+        const show = f==='all'||c.dataset.statut===f||c.dataset.zone===f;
+        c.classList.toggle('hidden',!show);
+        if(show)n++;
       });
-      countEl.textContent = visible;
+      document.getElementById('count').textContent = n;
     });
   });
-
   // Modal
   const modal = document.getElementById('modal');
-  function openModal() { modal.style.display = 'flex'; }
-  function closeModal() { modal.style.display = 'none'; }
-  modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
+  function openModal(name){document.getElementById('modal-bien-name').textContent=name||'Organisons une visite';modal.classList.add('open');}
+  function closeModal(){modal.classList.remove('open');}
+  modal.addEventListener('click',e=>{if(e.target===modal)closeModal();});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
 </script>
 </body>
 </html>
